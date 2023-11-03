@@ -1,0 +1,4 @@
+﻿  main.cpp
+E:\OneDrive\Projects\c++course\icecream\main.cpp(51,15): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+E:\OneDrive\Projects\c++course\icecream\main.cpp(52,15): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+  icecream.vcxproj -> E:\OneDrive\Projects\c++course\lab\x64\Debug\icecream.exe
