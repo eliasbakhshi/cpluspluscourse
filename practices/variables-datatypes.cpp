@@ -1,9 +1,9 @@
-#include <iostream>
-#include <string>
+#include "functions.hpp";
+
 
 using namespace std;
 
-int main() {
+void variables_datatypes() {
 	cout << "\n1. Ge exempel på 3 primitiva datatyper i C++.";
 	cout << "\n2. Är std::string en primitv datatyp ?";
 	cout << "\n No";
@@ -11,7 +11,7 @@ int main() {
 	cout << 10 / 4;
 	cout << "\n4. Vad blir resultatet av 12.0 / 5 i C++ ? ";
 	cout << 12.0 / 5;
-	cout << "5. Vad blir det?"
+	cout << "5. Vad blir det?";
 	cout << "\nA : true || false ?";
 	(true || false) ? cout << " Det blir true.\n" : cout << " Det blir false\n";
 	cout << "\nB : true && false ?";
@@ -194,7 +194,5 @@ int main() {
 	string sentence = "Hejsan svejsan idag!";
 	cout << sentence.find(" ");
 
-
-	return 0;
 
 }

@@ -1,2 +1,8 @@
-﻿  variables-datatypes.cpp
-  practices.vcxproj -> E:\OneDrive\Projects\cplusplus-training\icecream\x64\Debug\practices.exe
+﻿  main.cpp
+E:\OneDrive\Projects\cplusplus-training\practices\main.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  sandbox.cpp
+  selection-iteration.cpp
+  variables-datatypes.cpp
+E:\OneDrive\Projects\cplusplus-training\practices\variables-datatypes.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+  practices.vcxproj -> E:\OneDrive\Projects\cplusplus-training\practices\x64\Debug\practices.exe

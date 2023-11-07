@@ -127,7 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="sandbox.cpp" />
+    <ClCompile Include="selection-iteration.cpp" />
     <ClCompile Include="variables-datatypes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="functions.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
