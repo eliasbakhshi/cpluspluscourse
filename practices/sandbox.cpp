@@ -1,6 +1,7 @@
 #include "functions.hpp"
 
 
+
 using namespace std;
 
 struct car {
@@ -8,18 +9,34 @@ struct car {
 	double price;
 };
 
-void plus2(int &num) {
+void plus2(int& num) {
 	num += num;
 }
 
+void withReference(int& num) {
+	num += 10;
+	cout << num << endl;
+}
+
+void withPtr(int* num) {
+	*num += *num;
+}
+
+
 void sandbox() {
+
+	int num = 20;
+	withReference(num);
+	cout << num << endl;
+	withPtr(&num);
+	cout << num << endl;
 
 
 	string file_content;
 	string the_line;
 
 	// Read from the file.
-	fstream test_file("text.txt", ios::in);
+	//fstream test_file("text.txt", ios::in);
 	//if (test_file.is_open()) {
 	//	while (getline(test_file, the_line)) {
 	//		cout << the_line << endl;
@@ -28,7 +45,7 @@ void sandbox() {
 	//} else cout << "Could not open the file";
 
 	// Write in the file. 
-	fstream test_file2("text.txt", ios::app);
+	/*fstream test_file2("text.txt", ios::app);
 	if (test_file2.is_open()) {
 		test_file2.seekp(0, std::ios_base::beg);
 		while (getline(test_file, the_line)) {
@@ -54,7 +71,9 @@ void sandbox() {
 
 	int theNum = 10;
 	plus2(theNum);
-	cout << theNum;
+	cout << theNum;*/
+
+
 
 	//car ford = { "x200", 123.232 };
 
