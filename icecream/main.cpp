@@ -1,26 +1,29 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
 
 int main() {
+	string* icecreams = nullptr;
+	float* icecreamsScores = nullptr;
 	int totalAmount = 0, scoreRound = 0;
-	string icecreams[10], theInput;
-	float icecreamsScores[] = { 0,0,0,0,0,0,0,0,0,0 };
+	string theInput, fileInput;
 	bool moreScore = true;
 
 
-	cout << "How many ice creams will be judged (max 10)? ";
+	cout << "How many ice creams will be judged? ";
 	getline(cin, theInput);
 	totalAmount = stoi(theInput);
+	icecreams = new string[totalAmount];
+	icecreamsScores = new float[totalAmount] {0.0};
 
-	// exit the app if the amount is more that 10
-	if (totalAmount > 10) {
-		cout << "\n---> Program stops because you wrote a number more than 10.\n\n";
-		return 0;
-	}
-	int test = sizeof(icecreams) / sizeof(icecreams[0]);
+
+
+	int test = sizeof(*icecreams) / sizeof(icecreams[0]);
+
+	cout << test << endl;
 
 	// Get the icecreams names
 	for (int i = 0; i < totalAmount; i++) {
@@ -32,7 +35,9 @@ int main() {
 		for (int i = 0; i < totalAmount; i++) {
 			cout << icecreams[i] << ": ";
 			getline(cin, theInput);
+			if (theInput != "") {
 			icecreamsScores[i] += stof(theInput);
+			} else icecreamsScores[i] += 0;
 		}
 		scoreRound++;
 		cout << "More gradings (y/n)? ";

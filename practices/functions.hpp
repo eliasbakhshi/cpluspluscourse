@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 
 void variables_datatypes();
 void sandbox();

@@ -1,8 +1,6 @@
 #include "functions.hpp";
 
 
-using namespace std;
-
 void variables_datatypes() {
 	cout << "\n1. Ge exempel på 3 primitiva datatyper i C++.";
 	cout << "\n2. Är std::string en primitv datatyp ?";
