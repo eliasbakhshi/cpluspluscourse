@@ -4,9 +4,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 #endif
 
 using namespace std;
+void getNames(string tempArr[], int array_length);
+void getScores(string icecreams[], float icecreamsScores[], int totalAmount);
+string* readFile();
 
-void readFile(string fileName);
+vector<string> readFile2();
