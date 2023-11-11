@@ -1,7 +1,5 @@
-the name: 3333
-2234
-23432
-4
-234
-23
-4
+icecream1|23
+icecream2|24
+icecream3|65
+icecream4|25
+

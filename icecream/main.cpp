@@ -4,25 +4,34 @@
 int main() {
 	string* icecreams = nullptr, * icecreamsList = nullptr;
 	float* icecreamsScores = nullptr;
+	int* rowsCount=nullptr;
 	int totalAmount = 0, scoreRound = 0;
 	string theInput, fileInput;
 	bool moreScore = true;
 
-	int rowsCount = countRows("db.txt");
+	rowsCount = countFilerows("db.txt");
+	icecreamsList = readFile("db.txt");
+	cout << "222   " << saveFile("db.txt");
 
+
+
+	cout << "<-- Here is the list --> " << endl;
+		string* tempIcecream = nullptr;
+
+	for (int i = 0; i < *rowsCount; i++) {
+
+		tempIcecream = splitString(icecreamsList[i], '|');
+		cout << "name: " << tempIcecream[0] << " and the score is " << tempIcecream[1] << endl;
+	}
+		delete[] tempIcecream;
 
 
 	cout << "How many ice creams will be judged? ";
 	getline(cin, theInput);
 	totalAmount = stoi(theInput);
 
-	cout << rowsCount << endl;
-	icecreamsList = readFile("db.txt");
 	icecreams = new string[totalAmount];
 	icecreamsScores = new float[totalAmount] {0.0};
-	for (size_t i = 0; i < totalAmount; i++) {
-		cout << "arr2     " << icecreamsList[i] << endl;
-	}
 
 	// Get the icecreams names
 	getNames(icecreams, totalAmount);
@@ -69,6 +78,7 @@ int main() {
 	delete[] icecreams;
 	delete[] icecreamsScores;
 	delete[] icecreamsList;
+	delete rowsCount;
 
 	return 0;
 }

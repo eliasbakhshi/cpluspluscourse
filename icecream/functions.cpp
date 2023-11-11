@@ -8,6 +8,31 @@ void getNames(string tempArr[], int array_length) {
 	}
 }
 
+string* splitString(string str, char ch = ' ') {
+	int count = 1;
+	string tempStr = "";
+	string* splited = nullptr;
+	// Count have many of char exists in the string
+	for (int i = 0; i < str.size(); i++) {
+		if (str[i] == ch) count++;
+	}
+
+	splited = new string[count];
+	if (count == 1) {
+		splited[0] = str;
+	} else {
+		int j = 0;
+		for (int i = 0; i < str.size(); i++) {
+			if (str[i] != ch) {
+				splited[j] += str[i];
+			} else {
+				j++;
+			}
+		}
+	}
+	return splited;
+
+}
 
 // Get the score for each icecream.
 void getScores(string icecreams[], float icecreamsScores[], int totalAmount) {
@@ -27,13 +52,8 @@ string* readFile(string filename) {
 	int rowCount = 0;
 	string rowContent;
 
-	ifstream inStream(filename, ios::binary);
+	ifstream inStream(filename);
 	if (inStream.is_open()) {
-		cout << "ttt ";
-		inStream.seekg(0, ios_base::end);
-		inStream.seekg(0, ios_base::beg);
-
-		cout << "position 1 : " << inStream.tellg() << endl;
 		while (getline(inStream, rowContent)) { // Get the amount of rows.
 			if (!rowContent.empty()) {
 				rowCount++;
@@ -46,11 +66,12 @@ string* readFile(string filename) {
 		for (int i = 0; i < rowCount; i++) {
 			getline(inStream, tempArray[i]);
 		}
+		inStream.close();
 		return tempArray;
 	} else {
-		string* message = new string[1]{ "Could not read the file."
-		};
+		string* message = new string[1]{ "Could not read the file." };
 		return message;
+		
 	}
 
 	/*string theLine;
@@ -66,19 +87,39 @@ string* readFile(string filename) {
 	}*/
 }
 
-int countRows(string filename) {
-	int rowNums = 0;
+int* countFilerows(string filename) {
+	int* rowNums = new int(0);
 	string tempInput;
 	ifstream theFile(filename);
 	if (theFile.is_open()) {
 		while (getline(theFile, tempInput)) {
 			if (!tempInput.empty())
-				rowNums++;
+				*rowNums = *rowNums + 1;
 		}
-		cout << "wwww " << rowNums << endl;
-		cout << "wwww " << rowNums << endl;
-		cout << "It has " << rowNums << " rows" << endl;
+		theFile.close();
 		return rowNums;
 	}
 	return 0;
+}
+
+bool saveFile(string filename) {
+	ifstream of(filename);
+	string test, test2;
+	if (of.is_open()) {
+		string word;
+		while (!of.eof()) {
+			getline(of, word, '|');
+			cout << word << endl;
+		}
+
+		/*
+		of << "yes dfg df gdf gdf df gdf gdf g" << endl;
+		of << "yes" << endl;
+		of << "yes" << endl;*/
+
+
+		of.close();
+		return true;
+	}
+	return false;
 }
