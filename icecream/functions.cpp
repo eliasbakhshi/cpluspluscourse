@@ -23,11 +23,11 @@ void getScores(string icecreams[], float icecreamsScores[], int totalAmount) {
 }
 
 
-string* readFile() {
+string* readFile(string filename) {
 	int rowCount = 0;
 	string rowContent;
 
-	ifstream inStream("db.txt", ios::binary);
+	ifstream inStream(filename, ios::binary);
 	if (inStream.is_open()) {
 		cout << "ttt ";
 		inStream.seekg(0, ios_base::end);
@@ -46,19 +46,10 @@ string* readFile() {
 		for (int i = 0; i < rowCount; i++) {
 			getline(inStream, tempArray[i]);
 		}
-
-
-		for (size_t i = 0; i < rowCount; i++) {
-			cout << "arr " << tempArray[i] << endl;
-		}
-
-		
-
 		return tempArray;
-	}
-	else {
-		string* message = new string[1]{"Could not read the file."
-	};
+	} else {
+		string* message = new string[1]{ "Could not read the file."
+		};
 		return message;
 	}
 
@@ -75,23 +66,19 @@ string* readFile() {
 	}*/
 }
 
-
-vector<string> readFile2() {
-	ifstream inStream;
-	vector <string> tempArr;
-	inStream.open("db.txt");
-
-	string theLine;
-	if (inStream.is_open()) {
-		int counter = 0;
-
-		string* tempArray = new string[10000];
-		int index = 0;
-		while (getline(inStream, theLine)) {
-			tempArr.push_back(theLine);
-			index++;
+int countRows(string filename) {
+	int rowNums = 0;
+	string tempInput;
+	ifstream theFile(filename);
+	if (theFile.is_open()) {
+		while (getline(theFile, tempInput)) {
+			if (!tempInput.empty())
+				rowNums++;
 		}
-		inStream.close();
+		cout << "wwww " << rowNums << endl;
+		cout << "wwww " << rowNums << endl;
+		cout << "It has " << rowNums << " rows" << endl;
+		return rowNums;
 	}
-	return tempArr;
+	return 0;
 }

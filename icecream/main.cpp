@@ -2,25 +2,27 @@
 
 
 int main() {
-	string* icecreams = nullptr;
+	string* icecreams = nullptr, * icecreamsList = nullptr;
 	float* icecreamsScores = nullptr;
 	int totalAmount = 0, scoreRound = 0;
 	string theInput, fileInput;
 	bool moreScore = true;
-	string* icecreamsList = readFile();
-	cout << "vvvvvv " << * icecreamsList << endl;
-	cout << "test2" << endl;
+
+	int rowsCount = countRows("db.txt");
+
+
+
 	cout << "How many ice creams will be judged? ";
 	getline(cin, theInput);
 	totalAmount = stoi(theInput);
+
+	cout << rowsCount << endl;
+	icecreamsList = readFile("db.txt");
 	icecreams = new string[totalAmount];
 	icecreamsScores = new float[totalAmount] {0.0};
-	for (size_t i = 0; i < sizeof(icecreamsList) / sizeof(icecreamsList[0]); i++) {
-		cout << "arr " << icecreamsList[i] << endl;
+	for (size_t i = 0; i < totalAmount; i++) {
+		cout << "arr2     " << icecreamsList[i] << endl;
 	}
-
-	int test = sizeof(*icecreams) / sizeof(string);
-	cout << test << endl;
 
 	// Get the icecreams names
 	getNames(icecreams, totalAmount);

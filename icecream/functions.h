@@ -11,6 +11,5 @@
 using namespace std;
 void getNames(string tempArr[], int array_length);
 void getScores(string icecreams[], float icecreamsScores[], int totalAmount);
-string* readFile();
-
-vector<string> readFile2();
+string* readFile(string filename);
+int countRows(string filename);

@@ -23,23 +23,70 @@ void setNewPrice(car &theCar, float newPrice) {
 	theCar.price = newPrice;
 }
 
+class Animal {
+protected:
+	string name;
+
+
+public:
+	Animal(string newName) {
+		name = newName;
+	}
+	void setName(string newName) {
+		name = newName;
+	}
+
+	string getName() {
+		return name;
+	}
+
+};
+
+class Cat : public Animal {
+	float weight;
+
+public:
+	Cat(string n) : Animal(n) {
+		name = n;
+	}
+	void setWeight(float newWeight) {
+		weight = newWeight;
+	}
+	
+	void showInfo() {
+		cout << name << " is " << weight << "kg" << endl;
+	}
+};
+
 void sandbox() {
+	string name = "cat";
+	Animal test(name);
+	Cat cat("Tiger");
+	
+	cat.setWeight(25.3);
+	cat.showInfo();
+	string animalName = test.getName();
+	cout << "The name is " << animalName << endl;
 
-	car bmw = { "X200", 33.33 };
-	cout << bmw.model << " cost you " << bmw.price << " to buy it." << endl;
 
-	bmw.price = 45.33;
-	cout << "The new cost for the " << bmw.model << " is " << bmw.price << endl;
 
-	setNewPrice(bmw, 56.44);
-	cout << "The new cost for the " << bmw.model << " is " << bmw.price << endl;
 
-	enum class Person {name, age};
-	enum class User {name, age};
 
-	Person age = Person::age;
+	//car bmw = { "X200", 33.33 };
+	//cout << bmw.model << " cost you " << bmw.price << " to buy it." << endl;
 
-	cout << "The test value is " << static_cast<int>(age) << endl;
+	//bmw.price = 45.33;
+	//cout << "The new cost for the " << bmw.model << " is " << bmw.price << endl;
+
+	//setNewPrice(bmw, 56.44);
+	//cout << "The new cost for the " << bmw.model << " is " << bmw.price << endl;
+
+	//enum class Person {name, age};
+	//enum class User {name, age};
+
+	//Person age = Person::age;
+
+	//cout << "The test value is " << static_cast<int>(age) << endl;
 
 
 	//int num = 20;
