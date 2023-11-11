@@ -1,2 +1,3 @@
 ﻿  sandbox.cpp
-  practices.vcxproj -> E:\OneDrive\Projects\cplusplus-training\practices\x64\Debug\practices.exe
+E:\OneDrive\Projects\cplusplus-training\practices\sandbox.cpp(34,19): warning C4305: 'argument': truncation from 'double' to 'float'
+  practices.vcxproj -> E:\OneDrive\Projects\cplusplus-training\icecream\x64\Debug\practices.exe
