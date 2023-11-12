@@ -13,5 +13,7 @@ void getNames(string tempArr[], int array_length);
 void getScores(string icecreams[], float icecreamsScores[], int totalAmount);
 string* readFile(string filename);
 int* countFilerows(string filename);
-bool saveFile(string filename);
+bool saveToFile(string filename, string names[], float scores[], int length);
 string* splitString(string str, char ch);
+void showScore();
+void scoreIcecreams();

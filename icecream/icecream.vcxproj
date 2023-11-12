@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scoreIcecreams.cpp" />
+    <ClCompile Include="showScore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="db.txt" />

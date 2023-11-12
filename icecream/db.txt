@@ -1,5 +1,2 @@
-icecream1|23
-icecream2|24
-icecream3|65
-icecream4|25
-
+g|3
+t|4

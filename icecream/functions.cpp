@@ -31,7 +31,6 @@ string* splitString(string str, char ch = ' ') {
 		}
 	}
 	return splited;
-
 }
 
 // Get the score for each icecream.
@@ -71,20 +70,8 @@ string* readFile(string filename) {
 	} else {
 		string* message = new string[1]{ "Could not read the file." };
 		return message;
-		
+
 	}
-
-	/*string theLine;
-	if (inStream.is_open()) {
-		int counter = 0;
-
-		int index = 0;
-		while (getline(inStream, theLine)) {
-			tempArray[index] = theLine;
-			index++;
-		}
-		inStream.close();
-	}*/
 }
 
 int* countFilerows(string filename) {
@@ -102,23 +89,19 @@ int* countFilerows(string filename) {
 	return 0;
 }
 
-bool saveFile(string filename) {
-	ifstream of(filename);
+bool saveToFile(string filename, string names[], float scores[], int length) {
+	ofstream of(filename);
 	string test, test2;
 	if (of.is_open()) {
 		string word;
-		while (!of.eof()) {
+		for (int i = 0; i < length; i++) {
+			of << names[i] << '|' << scores[i] << endl;
+		}
+		/*while (!of.eof()) {
 			getline(of, word, '|');
 			cout << word << endl;
 		}
-
-		/*
-		of << "yes dfg df gdf gdf df gdf gdf g" << endl;
-		of << "yes" << endl;
-		of << "yes" << endl;*/
-
-
-		of.close();
+		of.close();*/
 		return true;
 	}
 	return false;
