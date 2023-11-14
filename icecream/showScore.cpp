@@ -10,12 +10,13 @@ void showScore() {
 	rowsCount = countFilerows(filename);
 	icecreamsList = readFile(filename);
 
-	cout << "<-- Here is the list --> " << endl;
+	cout << "\n<-- Here is the list --> \n\n";
 
 	for (int i = 0; i < *rowsCount; i++) {
 		tempIcecream = splitString(icecreamsList[i], '|');
-		cout << "name: " << tempIcecream[0] << " and the score is " << tempIcecream[1] << endl;
+		cout << tempIcecream[0] << " has the score " << tempIcecream[1] << ". \n";
 	}
+	cout << endl;
 
 	delete rowsCount;
 	delete[] icecreamsList;

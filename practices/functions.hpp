@@ -7,5 +7,5 @@ using namespace std;
 
 
 void variables_datatypes();
-void sandbox();
+void sandbox(string n);
 void selection_iteration();

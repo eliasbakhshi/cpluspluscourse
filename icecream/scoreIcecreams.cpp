@@ -54,16 +54,15 @@ void scoreIcecreams() {
 				break;
 			}
 		}
-		cout << "\n";
-		valueFound ? cout << theInput << " has been graded. \n" : cout << "Sorry, " << theInput << " has not been graded this time.\n";
+		valueFound ? cout << theInput << " has been graded. \n\n" : cout << "Sorry, " << theInput << " has not been graded this time.\n\n";
 	} else cout << "Du skrev inget :) " << endl;
 
 	cout << "Do you want to save the new list in the file? (y/n) ";
 	cin >> theInput;
 	if (theInput == "y") {
 		if (saveToFile(filename, icecreams, icecreamsScores, totalAmount)) {
-			cout << "Information have been saved in the " << filename << endl;
-		} else cout << "Failed to save in the file" << endl;
+			cout << "Information have been saved in the " << filename << ". \n\n";
+		} else cout << "Failed to save in the file. \n\n";
 	}
 
 	delete[] icecreams;

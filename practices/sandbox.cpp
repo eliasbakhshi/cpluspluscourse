@@ -58,15 +58,23 @@ public:
 	}
 };
 
-void sandbox() {
-	string name = "cat";
+void addValue(int &a, int b) {
+	a += b;
+}
+void sandbox(string name) {
+	int a = 10;
+	int b = 20;
+	addValue(a, b);
+
+	cout << a << endl;
+	/*string name = "cat";
 	Animal test(name);
 	Cat cat("Tiger");
 	
 	cat.setWeight(25.3);
 	cat.showInfo();
 	string animalName = test.getName();
-	cout << "The name is " << animalName << endl;
+	cout << "The name is " << animalName << endl;*/
 
 
 

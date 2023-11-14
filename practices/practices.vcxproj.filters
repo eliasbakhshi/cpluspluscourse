@@ -30,10 +30,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="text.txt" />
+    <Text Include="text.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
