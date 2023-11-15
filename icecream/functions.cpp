@@ -13,9 +13,9 @@ bool is_number(string str) {
 
 // Get the icecreams names
 void getNames(string tempArr[], int array_length) {
-	cout << endl << "Please enter the icecreams' name. Each row for one icecream: \n";
+	//cout << endl << "Please enter the icecreams' name. Each row for one icecream: \n";
 	for (int i = 0; i < array_length; i++) {
-		getline(cin, tempArr[i]);
+		tempArr[i] = get_string("Icecream's name: ");
 	}
 }
 

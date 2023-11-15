@@ -29,6 +29,7 @@ void scoreIcecreams() {
 	}
 
 	// Show the reault
+	system("cls");
 	cout << "\n\nThe number of gradings is " << scoreRound << endl;
 	cout << "The average score for each ice cream is\n\n";
 
