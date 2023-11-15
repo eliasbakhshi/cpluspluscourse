@@ -28,8 +28,7 @@ int main() {
 
 		if (running) {
 			cout << "Please press enter to go to the menu again";
-			cin.ignore();
-			getline(cin, theInput);
+			cin.get();
 			system("cls");
 		}
 	}
