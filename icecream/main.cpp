@@ -1,11 +1,13 @@
-#include "functions.h"
+#include "headers.h"
 
 int main() {
 	// initialization of the variables
 	bool running = true;
 	string theInput;
+	MI mi;
 
 	while (running) {
+		system("cls");
 		cout << "<-- Here is the list --> " << endl << endl;
 		cout << "1: Show the icecreams." << endl;
 		cout << "2: Score the icecreams." << endl << endl;
@@ -27,9 +29,7 @@ int main() {
 		} else cout << "The choice is not in the menu.\n\n";
 
 		if (running) {
-			cout << "Please press enter to go to the menu again";
-			cin.get();
-			system("cls");
+			theInput = mi.get_string("Please press enter to go to the menu again", true);
 		}
 	}
 

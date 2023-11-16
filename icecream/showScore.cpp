@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "headers.h"
 
 /* Show the scores for the icecreams. */
 void showScore() {
@@ -6,14 +6,16 @@ void showScore() {
 	int* rowsCount = nullptr;
 	string* icecreamsList = nullptr, * tempIcecream = nullptr;
 	string filename = "db.txt";
+	MS ms;
+	MF mf;
 
-	rowsCount = countFilerows(filename);
-	icecreamsList = readFile(filename);
+	rowsCount = mf.countFilerows(filename);
+	icecreamsList = mf.readFile(filename);
 
-	cout << "\n<-- Here is the list --> \n\n";
+	cout << "<-- Here is the list --> \n\n";
 
 	for (int i = 0; i < *rowsCount; i++) {
-		tempIcecream = splitString(icecreamsList[i], '|');
+		tempIcecream = ms.split(icecreamsList[i], '|');
 		cout << tempIcecream[0] << " has the score " << tempIcecream[1] << ". \n";
 	}
 	cout << endl;

@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "headers.h"
 
 /* Score the icecreams. */
 void scoreIcecreams() {
@@ -8,11 +8,12 @@ void scoreIcecreams() {
 	int totalAmount = 0, scoreRound = 0;
 	string theInput, filename = "db.txt";
 	bool moreScore = true;
+	MI mi;
+	MF mf;
+	
 
-	cout << "How many ice creams will be judged? ";
-	getline(cin, theInput);
-	totalAmount = stoi(theInput);
-
+	totalAmount = mi.get_int("How many ice creams will be judged? ");
+	
 	icecreams = new string[totalAmount];
 	icecreamsScores = new float[totalAmount] {0.0};
 
@@ -23,14 +24,13 @@ void scoreIcecreams() {
 	while (moreScore) {
 		getScores(icecreams, icecreamsScores, totalAmount);
 		scoreRound++;
-		cout << "More gradings (y/n)? ";
-		getline(cin, theInput);
-		moreScore = theInput == "y" ? true : false;
+		theInput = mi.get_string("More gradings (y/n)? ");
+		moreScore = theInput == "y" || theInput == "yes" ? true : false;
 	}
 
 	// Show the reault
 	system("cls");
-	cout << "\n\nThe number of gradings is " << scoreRound << endl;
+	cout << "The number of gradings is " << scoreRound << endl;
 	cout << "The average score for each ice cream is\n\n";
 
 	for (int i = 0; i < totalAmount; i++) {
@@ -42,11 +42,10 @@ void scoreIcecreams() {
 	cout << "\n\n";
 	cout << "The ice cream with highest grade is " << icecreams[maxIndex] << " which has score " << icecreamsScores[maxIndex] / scoreRound << endl;
 	cout << "The ice cream with lowest grade is " << icecreams[minIndex] << " which has score " << icecreamsScores[minIndex] / scoreRound << endl << endl << endl;
-	cout << "\n\n";
+	cout << "\n";
 
 	// Get a iceream name and check if it is in the list or not.
-	cout << "Input the name of your favorite ice cream: ";
-	getline(cin, theInput);
+	theInput = mi.get_string("Input the name of your favorite ice cream: ", true);
 	if (!theInput.empty()) {
 		bool valueFound = false;
 		for (int i = 0; i < totalAmount; i++) {
@@ -56,12 +55,11 @@ void scoreIcecreams() {
 			}
 		}
 		valueFound ? cout << theInput << " has been graded. \n\n" : cout << "Sorry, " << theInput << " has not been graded this time.\n\n";
-	} else cout << "Du skrev inget :) " << endl;
+	} else cout << "Du skrev inget :) \n\n" << endl;
 
-	cout << "Do you want to save the new list in the file? (y/n) ";
-	cin >> theInput;
+	theInput = mi.get_string("Do you want to save the new list in the file? (y/n) ");
 	if (theInput == "y") {
-		if (saveToFile(filename, icecreams, icecreamsScores, totalAmount)) {
+		if (mf.saveToFile(filename, icecreams, icecreamsScores, totalAmount)) {
 			cout << "Information have been saved in the " << filename << ". \n\n";
 		} else cout << "Failed to save in the file. \n\n";
 	}

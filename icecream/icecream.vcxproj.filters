@@ -27,9 +27,30 @@
     <ClCompile Include="scoreIcecreams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

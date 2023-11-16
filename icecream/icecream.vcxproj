@@ -129,14 +129,21 @@
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MI.cpp" />
+    <ClCompile Include="MS.cpp" />
     <ClCompile Include="scoreIcecreams.cpp" />
     <ClCompile Include="showScore.cpp" />
+    <ClCompile Include="MF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="db.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="headers.h" />
+    <ClInclude Include="MF.h" />
+    <ClInclude Include="MI.h" />
+    <ClInclude Include="MS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
