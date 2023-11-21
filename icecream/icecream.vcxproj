@@ -131,6 +131,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MI.cpp" />
     <ClCompile Include="MS.cpp" />
+    <ClCompile Include="Operators.cpp" />
     <ClCompile Include="scoreIcecreams.cpp" />
     <ClCompile Include="showScore.cpp" />
     <ClCompile Include="MF.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="MF.h" />
     <ClInclude Include="MI.h" />
     <ClInclude Include="MS.h" />
+    <ClInclude Include="Operators.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

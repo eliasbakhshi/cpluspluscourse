@@ -8,3 +8,4 @@ void getScores(string icecreams[], float icecreamsScores[], int totalAmount);
 // Menu parts
 void showScore();
 void scoreIcecreams();
+void operators();

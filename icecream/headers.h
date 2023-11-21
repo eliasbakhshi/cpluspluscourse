@@ -11,5 +11,6 @@ using namespace std;
 #include "MS.h"
 #include "MI.h"
 #include "MF.h"
+#include "Operators.h"
 
 #include "functions.h"

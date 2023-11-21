@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.hpp" />
+    <ClInclude Include="headers.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="text.txt" />

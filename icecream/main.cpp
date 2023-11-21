@@ -10,9 +10,10 @@ int main() {
 		system("cls");
 		cout << "<-- Here is the list --> " << endl << endl;
 		cout << "1: Show the icecreams." << endl;
-		cout << "2: Score the icecreams." << endl << endl;
+		cout << "2: Score the icecreams." << endl;
+		cout << "3: Show operators." << endl;
 
-		cout << "exit(e): Exit the game." << endl;
+		cout << "\nexit(e): Exit the game." << endl;
 
 		cout << endl << "Please enter your choice: ";
 		getline(cin, theInput);
@@ -26,6 +27,9 @@ int main() {
 		} else if (theInput == "2") {
 			system("cls");
 			scoreIcecreams();
+		} else if (theInput == "3") {
+			system("cls");
+			operators();
 		} else cout << "The choice is not in the menu.\n\n";
 
 		if (running) {

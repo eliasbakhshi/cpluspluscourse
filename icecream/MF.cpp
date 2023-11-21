@@ -1,7 +1,6 @@
 #pragma once
 #include "headers.h"
 
-
 string* MF::readFile(string filename) {
 	int rowCount = 0;
 	string rowContent;

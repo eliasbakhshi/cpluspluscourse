@@ -1,13 +1,9 @@
 #pragma once
-#include "headers.h"
+#include "MS.h"
 
 class MS {
-
-
 protected:
 	bool is_number(string str);
-
-
 public:
 	string* split(string str, char ch = ' ');
 
