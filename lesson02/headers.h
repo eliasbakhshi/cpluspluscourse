@@ -7,5 +7,5 @@
 using namespace std;
 
 // classes
-#include "Buddy-2.h"
-#include "BuddyBook.h"
+#include "Person.h"
+#include "PersonsList.h"

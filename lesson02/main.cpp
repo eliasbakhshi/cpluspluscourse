@@ -1,41 +1,23 @@
-#include "header.h"
+#include "headers.h"
 
 
-int main()
-{
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	BuddyBook bb;
-
-	bb.addBuddy("Adam", 149, 200.0f);
-	bb.addBuddy("Jens", 22, 176.9f);
-	bb.addBuddy("Goran", 51, 175.5f);
-	bb.addBuddy("Pelle", 12, 44.2f);
-
-	bb.showBuddies();
-
-	cout << "\n";
-	bb.removeBuddy("Jens", 22, 176.9f);
-	cout << "\n";
-
-	bb.showBuddies();
-
-	cout << "\n";
-
-	BuddyBook bb2(bb);
-
-	cout << "<---" << endl;
-
-	bb2.showBuddies();
-
-	cout << "\n";
-
-	BuddyBook bb3;
-	bb3.addBuddy("Flappe", 2, 23.5f);
-
-	bb3 = bb;
-
-	bb3.showBuddies();
-
-	return 0;
-}
+//int main()
+//{
+//	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+//
+//	PersonsList pl;
+//
+//	pl.addPerson("Elias", "Ka", 23);
+//	pl.addPerson("Elias", "Ka2", 222222);
+//	pl.showPersons();
+//	pl.removePerson("Elias", "Ka", 23);
+//	pl.showPersons();
+//	cout << "\n\n now \n";
+//	PersonsList pl2(pl);
+//	pl2.showPersons();
+//	PersonsList pl3 = pl2;	
+//	pl3.removePerson("Elias322222", "Ka3", 23);
+//	pl3.showPersons();
+//
+//	return 0;
+//}

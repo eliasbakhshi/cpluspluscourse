@@ -1,20 +1,20 @@
-#include "header.h"
+#include "headers.h"
 
 
 bool testBasicFunctionality()
 {
 	cout << "Testing basic functionality" << endl;
-	BuddyBook aBuddyBook;
+	PersonsList aPersonsList;
 
-	if (aBuddyBook.getCurrentNrOfBuddies() != 0)
+	if (aPersonsList.getCurrentNrOfPersons() != 0)
 	{
 		cout << "NOT CORRECT amount of buddies, expected 0" << endl;
 		return false;
 	}
-	aBuddyBook.addBuddy("Lisa Land", 23, 167.5f);
-	aBuddyBook.addBuddy("Maj Moln", 33, 154.0f);
+	aPersonsList.addPerson("Lisa Land", "city", 167.5f);
+	aPersonsList.addPerson("Maj Moln", "city", 154.0f);
 
-	if (aBuddyBook.getCurrentNrOfBuddies() != 2)
+	if (aPersonsList.getCurrentNrOfPersons() != 2)
 	{
 		cout << "NOT CORRECT amount of buddies, expected 2" << endl;
 		return false;
@@ -26,30 +26,30 @@ bool testBasicFunctionality()
 bool testRemove()
 {
 	cout << "Testing remove" << endl;
-	BuddyBook aBuddyBook;
+	PersonsList aPersonsList;
 
-	aBuddyBook.addBuddy("Lisa Land", 23, 167.5f);
-	aBuddyBook.addBuddy("Maj Moln", 33, 154.0f);
-	aBuddyBook.addBuddy("Ralle Regn", 67, 199.5f);
-	aBuddyBook.addBuddy("Svenne Snoe", 43, 161.0f);
-	//Buddy* ptr = aBuddyBook.getBuddyAt(3);
+	aPersonsList.addPerson("Lisa Land", "city", 167.5f);
+	aPersonsList.addPerson("Maj Moln", "city", 154.0f);
+	aPersonsList.addPerson("Ralle Regn", "city", 199.5f);
+	aPersonsList.addPerson("Svenne Snoe", "city", 161.0f);
+	//Buddy* ptr = aPersonsList.getBuddyAt(3);
 
-	aBuddyBook.removeBuddy("Maj Moln", 33, 154.0f);
-	if (aBuddyBook.getCurrentNrOfBuddies() != 3)
+	aPersonsList.removePerson("Maj Moln", "city", 154.0f);
+	if (aPersonsList.getCurrentNrOfPersons() != 3)
 	{
 		cout << "NOT CORRECT amount of buddies, expected 3 " << endl;
 		return false;
 	}
 
-	aBuddyBook.removeBuddy("Lisa Land", 23, 167.5f);
-	if (aBuddyBook.getCurrentNrOfBuddies() != 2)
+	aPersonsList.removePerson("Lisa Land", "city", 167.5f);
+	if (aPersonsList.getCurrentNrOfPersons() != 2)
 	{
 		cout << "NOT CORRECT amount of buddies, expected 2 " << endl;
 		return false;
 	}
 
-	aBuddyBook.removeBuddy("Svenne Snoe", 43, 161.0f);
-	if (aBuddyBook.getCurrentNrOfBuddies() != 1)
+	aPersonsList.removePerson("Svenne Snoe", "city", 161.0f);
+	if (aPersonsList.getCurrentNrOfPersons() != 1)
 	{
 		cout << "NOT CORRECT amount of buddies, expected 1 " << endl;
 		return false;
@@ -62,21 +62,21 @@ bool testRemove()
 bool testingCopyConstructor()
 {
 	cout << "Testing copy constructor" << endl;
-	BuddyBook bb1;
-	BuddyBook bb2(bb1);
+	PersonsList bb1;
+	PersonsList bb2(bb1);
 
-	if (bb1.getCurrentNrOfBuddies() != 0)
+	if (bb1.getCurrentNrOfPersons() != 0)
 	{
 		cout << "NOT CORRECT amount of buddies" << endl;
 		return false;
 	}
 
-	bb1.addBuddy("Lisa Land", 23, 167.5f);
-	bb1.addBuddy("Maj Moln", 33, 154.0f);
-	bb1.addBuddy("Ralle Regn", 67, 199.5f);
+	bb1.addPerson("Lisa Land", "city", 167.5f);
+	bb1.addPerson("Maj Moln", "city", 154.0f);
+	bb1.addPerson("Ralle Regn", "city", 199.5f);
 
-	BuddyBook bb3 = bb1;
-	if (bb3.getCurrentNrOfBuddies() != 3)
+	PersonsList bb3 = bb1;
+	if (bb3.getCurrentNrOfPersons() != 3)
 	{
 		cout << "NOT CORRECT amount of buddies" << endl;
 		return false;

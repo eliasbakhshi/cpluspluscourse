@@ -54,6 +54,8 @@
 # Mono auto generated files
 mono_crash.*
 
+.vs/
+
 # Build results icecream
 icecream/[Dd]ebug/
 icecream/[Dd]ebugPublic/
@@ -104,6 +106,23 @@ lab1-test/[Oo]bj/
 lab1-test/[Ll]og/
 lab1-test/[Ll]ogs/
 lab1-test/.vs/
+
+# Build results icecream
+icecream/[Dd]ebug/
+icecream/[Dd]ebugPublic/
+icecream/[Rr]elease/
+icecream/[Rr]eleases/
+icecream/x64/
+icecream/x86/
+icecream/[Ww][Ii][Nn]32/
+icecream/[Aa][Rr][Mm]/
+icecream/[Aa][Rr][Mm]64/
+icecream/bld/
+icecream/[Bb]in/
+icecream/[Oo]bj/
+icecream/[Ll]og/
+icecream/[Ll]ogs/
+icecream/.vs/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -470,3 +489,6 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudio
+/lesson02/x64/Debug
+/lesson02/Lesson02.vcxproj
+/lesson02/Lesson02.vcxproj.filters
