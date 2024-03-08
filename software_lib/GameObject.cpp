@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "GameObject.h"
 
-GameObject::GameObject() {}
+GameObject::GameObject(string name) {
+	this->name = name;
+}
 
 string GameObject::listInteractionTypes() {
 	return "1) Grab\n2) Sit on\n3) Stand on\n";

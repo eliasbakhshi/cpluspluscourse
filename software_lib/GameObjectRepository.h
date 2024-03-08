@@ -1,11 +1,10 @@
 #pragma once
 #include "GameObject.h"
-#include "Game.h"
 
 class GameObjectRepository {
-public:
 	vector<GameObject*> objects;
+public:
 	GameObjectRepository();
 	GameObject getGameObject(string gameElementName);
-	void addToVector(GameObject name);
+	bool addToVector(string gameElementName);
 };

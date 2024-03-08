@@ -107,22 +107,38 @@ lab1-test/[Ll]og/
 lab1-test/[Ll]ogs/
 lab1-test/.vs/
 
-# Build results icecream
-icecream/[Dd]ebug/
-icecream/[Dd]ebugPublic/
-icecream/[Rr]elease/
-icecream/[Rr]eleases/
-icecream/x64/
-icecream/x86/
-icecream/[Ww][Ii][Nn]32/
-icecream/[Aa][Rr][Mm]/
-icecream/[Aa][Rr][Mm]64/
-icecream/bld/
-icecream/[Bb]in/
-icecream/[Oo]bj/
-icecream/[Ll]og/
-icecream/[Ll]ogs/
-icecream/.vs/
+# Build results software_lib
+software_lib/[Dd]ebug/
+software_lib/[Dd]ebugPublic/
+software_lib/[Rr]elease/
+software_lib/[Rr]eleases/
+software_lib/x64/
+software_lib/x86/
+software_lib/[Ww][Ii][Nn]32/
+software_lib/[Aa][Rr][Mm]/
+software_lib/[Aa][Rr][Mm]64/
+software_lib/bld/
+software_lib/[Bb]in/
+software_lib/[Oo]bj/
+software_lib/[Ll]og/
+software_lib/[Ll]ogs/
+software_lib/.vs/
+# Build results software
+software/[Dd]ebug/
+software/[Dd]ebugPublic/
+software/[Rr]elease/
+software/[Rr]eleases/
+software/x64/
+software/x86/
+software/[Ww][Ii][Nn]32/
+software/[Aa][Rr][Mm]/
+software/[Aa][Rr][Mm]64/
+software/bld/
+software/[Bb]in/
+software/[Oo]bj/
+software/[Ll]og/
+software/[Ll]ogs/
+software/.vs/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

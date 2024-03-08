@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameElement.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectRepository.cpp" />
     <ClCompile Include="pch.cpp">

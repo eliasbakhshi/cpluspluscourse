@@ -1,16 +1,18 @@
 #pragma once
 #include "Headers.h"
+#include "GameObject.h"
 #include "GameObjectRepository.h"
 #include "Scene.h"
-#include "GameObject.h"
 
 
 class Game {
-public:
+	GameObjectRepository myGameObjects;
 	Scene currentScene;
 	vector<Scene> playerInventory;
+public:
 
-	string selectGameObject(string name);
+	GameObject selectGameObject(string name);
+	bool addGameObject(string name);
 	string selectInteraction(GameObject theGameObject, int theInteraction);
 	string setInteractionOptions(GameObject gameobj, int theOption);
 	string startInteraction(GameObject gameobj);

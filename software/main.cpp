@@ -6,10 +6,7 @@
 int main() {
 
 	Game game;
-	GameObject gameObject;
-	string object;
-	string theOptions;
-
+	string object, theInput, res = "";
 	vector<string> objects{ "chair", "car" };
 
 	for (size_t i = 0; i < objects.size(); i++) {
@@ -18,13 +15,12 @@ int main() {
 
 	cout << "Choose object: ";
 	getline(cin, object);
-
-	string res = game.selectGameObject(objects[stoi(object) - 1]);
-	cout << res << endl;
-	cout << gameObject.listInteractionTypes();
+	game.addGameObject(objects[stoi(object)-1]);
+	GameObject gameObject = game.selectGameObject(objects[stoi(object) - 1]);
+	cout << gameObject.listInteractionTypes() << endl;
 	cout << "Choose option: ";
-	getline(cin, theOptions);
-	res = game.selectInteraction(gameObject, stoi(theOptions) - 1);
+	getline(cin, theInput);
+	res = game.setInteractionOptions(gameObject, stoi(theInput) - 1);
 	cout << res << endl;
 	cout << game.startInteraction(gameObject) << endl;
 
@@ -32,5 +28,7 @@ int main() {
 	getchar();
 
 	cout << game.abortInteraction(gameObject);
+
+	//return 0;
 
 }

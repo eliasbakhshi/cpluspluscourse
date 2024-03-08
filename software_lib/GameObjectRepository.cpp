@@ -1,15 +1,20 @@
 #include "pch.h"
 #include "GameObjectRepository.h"
 
-GameObjectRepository::GameObjectRepository() {
-}
+GameObjectRepository::GameObjectRepository() {}
 
 GameObject GameObjectRepository::getGameObject(string gameElementName) {
-    GameObject bruh;
-    return bruh;
+	GameObject objectGame("");
+	for (size_t i = 0; i < this->objects.size(); i++) {
+		if ((*this->objects[i]).name == gameElementName) {
+			objectGame = *this->objects[i];
+		}
+	}
+	return objectGame;
 }
 
-void GameObjectRepository::addToVector(GameObject name) {
-    GameObject* ptr = new GameObject;
-    objects.push_back(ptr);
+bool GameObjectRepository::addToVector(string gameElementName) {
+	GameObject* ptr = new GameObject(gameElementName);
+	this->objects.push_back(ptr);
+	return true;
 }

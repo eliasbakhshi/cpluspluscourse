@@ -1,9 +1,13 @@
 #include "pch.h"
 #include "Game.h"
 
-string Game::selectGameObject(string name) {
-	GameObject forsure;
-	return "Object created: " + name;
+GameObject Game::selectGameObject(string name) {	
+	return this->myGameObjects.getGameObject(name);
+	//return "Object created: " + name;
+}
+
+bool Game::addGameObject(string name) {
+	return this->myGameObjects.addToVector(name);
 }
 
 string Game::selectInteraction(GameObject theGameObject, int theInteraction) {
