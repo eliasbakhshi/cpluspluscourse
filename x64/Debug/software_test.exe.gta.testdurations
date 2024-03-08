@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtaTestDurations xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Executable>E:\Projects\cplusplus-training\x64\Debug\software_test.exe</Executable>
+  <TestDurations>
+    <TestDuration Test="Unit_testing.selectGameObject" Duration="1" />
+  </TestDurations>
+</GtaTestDurations>
