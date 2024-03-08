@@ -14,9 +14,10 @@ int main() {
 	}
 
 	cout << "Choose object: ";
-	getline(cin, object);
-	game.addGameObject(objects[stoi(object)-1]);
-	GameObject gameObject = game.selectGameObject(objects[stoi(object) - 1]);
+	getline(cin, theInput);
+	game.addGameObject(objects[stoi(theInput)-1]);
+	GameObject gameObject = game.selectGameObject(objects[stoi(theInput) - 1]);
+	if (gameObject.name == "") return 1;
 	cout << gameObject.listInteractionTypes() << endl;
 	cout << "Choose option: ";
 	getline(cin, theInput);
@@ -29,6 +30,6 @@ int main() {
 
 	cout << game.abortInteraction(gameObject);
 
-	//return 0;
+	return 0;
 
 }

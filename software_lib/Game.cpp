@@ -3,7 +3,6 @@
 
 GameObject Game::selectGameObject(string name) {	
 	return this->myGameObjects.getGameObject(name);
-	//return "Object created: " + name;
 }
 
 bool Game::addGameObject(string name) {
