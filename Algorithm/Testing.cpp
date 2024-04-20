@@ -1,4 +1,6 @@
 #include "Lab.h"
+#include "QueueLinkedList.h"
+#include "Testing.h"
 #include <string>
 #include <iostream>
 #include <utility>
@@ -325,59 +327,90 @@ bool testbinarysearch()
 
 int main()
 {
-	if (!testSameElementsInArrayBeforeAndAfterSorting(insertionSort<int>, "insertionsort"))
-	{
-		cout << "NOT OK" << endl;
-		return -1;
-	}
-	if (!testSameElementsInArrayBeforeAndAfterSorting(selectionSort<int>, "selectionsort"))
-	{
-		cout << "NOT OK" << endl;
-		return -1;
-	}
-	if (!testSortOnSmallIntegerArrays(insertionSort<int>, "insertionsort"))
-	{
-		std::cout << "Test insertionsort on small arrays : NOT OK" << std::endl;
-		return 1;
-	}
-	
-	if (!testSortOnSmallIntegerArrays(selectionSort<int>, "selectionsort"))
-	{
-		std::cout << "Test selectionsort on small arrays : NOT OK" << std::endl;
-		return 2;
-	}
-	if (!testSortOnBiggerIntegerArrays(insertionSort<int>, "insertionsort"))
-	{
-		std::cout << "Test insertionsort on bigger arrays : NOT OK" << std::endl;
-		return 3;
-	}
-	if (!testSortOnBiggerIntegerArrays(selectionSort<int>, "selectionsort"))
-	{
-		std::cout << "Test selectionsort on bigger arrays : NOT OK" << std::endl;
-		return 4;
-	}
-	if (!testSortOnArraysWithObjects(insertionSort<ComparableElem>, "insertionsort", true))
-	{
-		std::cout << "Test insertionsort on arrays with objects: NOT OK" << std::endl;
-		return 5;
-	}
-	if (!testSortOnArraysWithObjects(selectionSort<ComparableElem>, "selectionsort"))
-	{
-		std::cout << "Test selectionsort on arrays with objects: NOT OK" << std::endl;
-		return 6;
-	}
-	if (!testLinearSearch())
-	{
-		std::cout << "Test linear search : NOT OK" << std::endl;
-		return 7;
-	}
-	if (!testbinarysearch())
-	{
-		std::cout << "Test binary search : NOT OK" << std::endl;
-		return 8;
+	/*const int CAP = 9;
+	int aa[CAP]{ 77, 11, 33, 88, 99, 22, 44, 66, 55 };
+	cout << partition3(aa, 0, CAP);
+	printArray(aa, CAP);
 
+	selectionSort2(aa, CAP);
+
+	cout << linearSearch2(aa, CAP, 55) << endl;
+	cout << binarySearch2(aa, CAP, 55) << endl;
+	cout << "binarySearchRec2 " << endl;
+	cout << binarySearchRec2(aa, 0, CAP - 1, 22) << endl;
+
+
+	cout << "Start 2" << endl;
+	for (auto a : aa ) {
+		cout << a << " ";
+	}
+	cout << endl << "End 2" << endl;*/
+
+
+	/* QueueLinkedList */
+
+	cout << "QueueLinkedList";
+
+	Queue<int> iQueue;
+	try {
+		iQueue.enqueue(22);
+	} catch (exception e) {
+		cout << e.what() << endl;
 	}
 
+
+	//
+	//if (!testSameElementsInArrayBeforeAndAfterSorting(insertionSort<int>, "insertionsort"))
+	//{
+	//	cout << "NOT OK" << endl;
+	//	return -1;
+	//}
+	//if (!testSameElementsInArrayBeforeAndAfterSorting(selectionSort<int>, "selectionsort"))
+	//{
+	//	cout << "NOT OK" << endl;
+	//	return -1;
+	//}
+	//if (!testSortOnSmallIntegerArrays(insertionSort<int>, "insertionsort"))
+	//{
+	//	std::cout << "Test insertionsort on small arrays : NOT OK" << std::endl;
+	//	return 1;
+	//}
+	//
+	//if (!testSortOnSmallIntegerArrays(selectionSort<int>, "selectionsort"))
+	//{
+	//	std::cout << "Test selectionsort on small arrays : NOT OK" << std::endl;
+	//	return 2;
+	//}
+	//if (!testSortOnBiggerIntegerArrays(insertionSort<int>, "insertionsort"))
+	//{
+	//	std::cout << "Test insertionsort on bigger arrays : NOT OK" << std::endl;
+	//	return 3;
+	//}
+	//if (!testSortOnBiggerIntegerArrays(selectionSort<int>, "selectionsort"))
+	//{
+	//	std::cout << "Test selectionsort on bigger arrays : NOT OK" << std::endl;
+	//	return 4;
+	//}
+	//if (!testSortOnArraysWithObjects(insertionSort<ComparableElem>, "insertionsort", true))
+	//{
+	//	std::cout << "Test insertionsort on arrays with objects: NOT OK" << std::endl;
+	//	return 5;
+	//}
+	//if (!testSortOnArraysWithObjects(selectionSort<ComparableElem>, "selectionsort"))
+	//{
+	//	std::cout << "Test selectionsort on arrays with objects: NOT OK" << std::endl;
+	//	return 6;
+	//}
+	//if (!testLinearSearch())
+	//{
+	//	std::cout << "Test linear search : NOT OK" << std::endl;
+	//	return 7;
+	//}
+	//if (!testbinarysearch())
+	//{
+	//	std::cout << "Test binary search : NOT OK" << std::endl;
+	//	return 8;
+	//}
 	//här kan du lägga till tester för ex-vis rekursiva versioner av 
 	// sorteringsfunktioner
 

@@ -47,7 +47,7 @@ int binarySearch(T arr[], int nrOf, T toFind) {
     int left = 0;
     int right = nrOf - 1;
     while (left < right) {
-        int mid = (right + left) / 2;
+        int mid = (right - left) / 2;
         if (arr[mid] == toFind) {
             return mid;
         }
@@ -105,4 +105,36 @@ void insertionSortWithBinarySearch(T arr[], int nrOf) {
     }
 }
 
+
+template <typename T>
+void partition(T arr[], int low, int high) {
+    T pivot= arr[high]; 
+
+    int i = low - 1;
+    for (int j = low; i < high - 1; i++) {
+        if (arr[j] <= pivot) {
+            i++;
+            T temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        
+    }
+    T temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+    return (i + 1);
+
+}
+
+template <typename T>
+void quickSort(T arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        
+
+        
+    }
+
+}
 #endif
