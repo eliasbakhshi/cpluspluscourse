@@ -1,8 +1,8 @@
-#include "Stack.h"
-#include "QueueLinkedList.h"
+//#include "Stack.h"
+//#include "QueueLinkedList.h"
 //#include "QueueCircularArray.h"
-#include <iostream>
-#include <string>
+//#include <iostream>
+//#include <string>
 //
 //bool testingStack()
 //{
@@ -217,19 +217,19 @@
 //	std::cout << std::endl;
 //	return true;
 //}
-
+//
 //int main()
 //{
 //	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-///*	if (!testingStack())
+//	if (!testingStack())
 //	{
 //		std::cout << "TEST DID NOT PASS" << std::endl;
 //		return 1;
 //	}
 //	std::cout << std::endl << "TEST PASSED" << std::endl;
 //	std::cout << "****************************************** " << std::endl;
-//	*/
-//	/*if (!testingQueue())
+//	
+//	if (!testingQueue())
 //	{
 //		std::cout << "TEST DID NOT PASS" << std::endl;
 //		return 2;
@@ -237,5 +237,5 @@
 //	std::cout << std::endl << "TEST PASSED" << std::endl;
 //	std::cout << "****************************************** " << std::endl;
 //
-//	return 0;*/
+//	return 0;
 //}

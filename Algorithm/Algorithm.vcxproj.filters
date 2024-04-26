@@ -15,21 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Testing.cpp">
+    <ClCompile Include="mycode-testing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Testing2.h">
+    <ClCompile Include="Temp.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
+    <ClCompile Include="Test-LabB1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Priorityqueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsB2HeapList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsB2IndexedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lab.h">
+    <ClInclude Include="Lab1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Testing.h">
+    <ClInclude Include="Testing_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
@@ -42,6 +60,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SortedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexedList.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

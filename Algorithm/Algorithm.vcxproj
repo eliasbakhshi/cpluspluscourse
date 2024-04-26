@@ -127,17 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Test.cpp" />
-    <ClCompile Include="Testing2.h" />
-    <ClCompile Include="Testing.cpp" />
+    <ClCompile Include="Priorityqueue.cpp" />
+    <ClCompile Include="Testing1.cpp" />
+    <ClCompile Include="Test-LabB1.cpp" />
+    <ClCompile Include="Testing2.cpp" />
+    <ClCompile Include="Temp.h" />
+    <ClCompile Include="mycode-testing.cpp" />
+    <ClCompile Include="Testing3.cpp" />
+    <ClCompile Include="TestsB2HeapList.cpp" />
+    <ClCompile Include="TestsB2IndexedList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lab.h" />
+    <ClInclude Include="HeapList.hpp" />
+    <ClInclude Include="IndexedList.hpp" />
+    <ClInclude Include="Lab1.h" />
+    <ClInclude Include="Lab2.h" />
+    <ClInclude Include="Lab3.h" />
     <ClInclude Include="QueueCircularArray.h" />
     <ClInclude Include="QueueLinkedList.h" />
     <ClInclude Include="SortedList.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="Testing.h" />
+    <ClInclude Include="Testing_functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

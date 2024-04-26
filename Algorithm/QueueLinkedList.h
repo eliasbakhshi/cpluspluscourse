@@ -1,12 +1,14 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+
 #include <exception>
 #include <iostream>
+
 
 using namespace std;
 
 /*
-throw exception if dequeue() or peek() is excuted when queue is empty
+throw exception if dequeue() or peek() is executed when the queue is empty
 
 for example in dequeue():
 
@@ -36,52 +38,75 @@ public:
 	void enqueue(const T& element);
 	T dequeue();
 	const T& peek() const;
-	bool is_empty();
+	bool is_empty() const;
 };
-
-#endif
 
 template<typename T>
 inline Queue<T>::Queue() : first(nullptr), last(nullptr) {}
 
 template<typename T>
-inline Queue<T>::~Queue() {}
+inline Queue<T>::~Queue() {
+	// Deallocate all nodes in the queue
+	while (first != nullptr) {
+		Node* temp = first;
+		first = first->next;
+		delete temp;
+	}
+}
 
 template<typename T>
 inline void Queue<T>::enqueue(const T& element) {
-	// check if queue is empty
+	// Create a new node with the given element
+	Node* newNode = new Node(element);
+
+	// If the queue is empty, set both first and last pointers to the new node
 	if (is_empty()) {
-		first = new Node(element);
-		last = first;
-	} else { // There is al least one element
-		first->next = new Node(element);
-		last = first->next;
+		first = last = newNode;
+	} else { // If there is at least one element
+		last->next = newNode; // Link the current last node to the new node
+		last = newNode; // Update the last pointer to the new node
 	}
-	cout << first->data << endl;
 }
-//
-//template<typename T>
-//inline T Queue<T>::dequeue() {
-//	Node* temp = first;
-//
-//	if (first == NULL) {
-//		cout << "Linked list is empty. Nothing to delete.";
-//		return T();
-//	}
-//	first = first->next;
-//	delete (temp);
-//	return T();
-//}
-//
-//template<typename T>
-//inline const T& Queue<T>::peek() const {
-//	if (is_empty()) {
-//		throw exception("Exception: peak on empty queue");
-//	}
-//	return first->data;
-//}
-//
+
 template<typename T>
-inline bool Queue<T>::is_empty() {
+inline T Queue<T>::dequeue() {
+	// Check if the queue is empty
+	if (is_empty()) {
+		throw std::exception("calling dequeue() on empty queue");
+	}
+
+	// Store the data of the first node
+	T data = first->data;
+
+	// Store the address of the first node
+	Node* temp = first;
+
+	// Move the first pointer to the next node
+	first = first->next;
+
+	// If the queue becomes empty after dequeue, update the last pointer as well
+	if (first == nullptr) {
+		last = nullptr;
+	}
+
+	// Delete the first node
+	delete temp;
+
+	// Return the dequeued data
+	return data;
+}
+
+template<typename T>
+inline const T& Queue<T>::peek() const {
+	if (is_empty()) {
+		throw std::exception("peek() called on empty queue");
+	}
+	return first->data;
+}
+
+template<typename T>
+inline bool Queue<T>::is_empty() const {
 	return first == nullptr;
 }
+
+#endif

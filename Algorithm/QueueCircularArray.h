@@ -31,4 +31,70 @@ public:
 	bool is_empty();
 };
 
+
+template<typename T>
+Queue<T>::Queue() :currentCapacity(10), head(0), tail(0), nrOfElements(0), elements(new T[10]) {}
+
+template<typename T>
+
+Queue<T>::~Queue() {
+    delete[] elements;
+}
+// Function declarations outside the class declaration
+template<typename T>
+void Queue<T>::enqueue(const T& element) {
+    // Implementation here...
+    if (nrOfElements == currentCapacity) {
+        expand();
+    }
+    elements[tail] = element;
+    taiil = (tail + 1) % currentCapacity;
+    nrOfElements++;
+}
+
+template<typename T>
+T Queue<T>::dequeue() {
+    if (is_empty()) {
+        throw std::exception("Listan är fulll");
+    }
+    T* element = elements[head];
+    head = (head + 1) % currentCapacity;
+    nrOfElements--;
+    return element;
+    // Implementation here...
+}
+
+template<typename T>
+const T& Queue<T>::peek() const {
+    // Implementation here...
+    if (is_empty()) {
+        throw std::exception("Listan är fulll");
+    }
+    return elements[head];
+
+}
+
+template<typename T>
+bool Queue<T>::is_empty() const {
+    return nrOfElements == 0;
+}
+
+template<typename T>
+inline void Queue<T>::expand() {
+    int NC = currentCapacity * 2;
+    T* newElement = new T[NC];
+    for (int i = 0; i < nrOfElements; i++) {
+        newElement[i] = elements[(head + 1) & currentCapacity];
+    }
+    delete[] elements;
+    elements = newElement;
+    head = 0;
+    tail = nrOfElements;
+    currentCapacity = NC;
+
+
+}
+
+
+
 #endif
