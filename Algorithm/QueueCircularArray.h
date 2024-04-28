@@ -1,5 +1,6 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+
 #include <exception>
 
 /*
@@ -13,23 +14,26 @@ if the queue is empty
 */
 
 template <typename T>
-class Queue
-{
+class Queue {
 private:
-	T* elements;
-	int currentCapacity;
-	int first;
-	int last;
+    T* elements;
+    int currentCapacity;
+    int head;
+    int tail;
+    int nrOfElements;
+    void expand();
 public:
-	Queue();
-	virtual ~Queue();
-	Queue(const Queue& other) = delete;
-	Queue& operator=(const Queue& other) = delete;
-	void enqueue(const T& element);
-	T dequeue();
-	const T& peek() const;
-	bool is_empty();
+    Queue();
+    virtual ~Queue();
+    Queue(const Queue& other) = delete;
+    Queue& operator=(const Queue& other) = delete;
+    void enqueue(const T& element);
+    T dequeue();
+    const T& peek() const;
+    bool is_empty() const;
 };
+
+#endif
 
 
 template<typename T>
@@ -48,7 +52,7 @@ void Queue<T>::enqueue(const T& element) {
         expand();
     }
     elements[tail] = element;
-    taiil = (tail + 1) % currentCapacity;
+    tail = (tail + 1) % currentCapacity;
     nrOfElements++;
 }
 
@@ -57,21 +61,18 @@ T Queue<T>::dequeue() {
     if (is_empty()) {
         throw std::exception("Listan är fulll");
     }
-    T* element = elements[head];
+    T element = elements[head];
     head = (head + 1) % currentCapacity;
     nrOfElements--;
     return element;
-    // Implementation here...
 }
 
 template<typename T>
 const T& Queue<T>::peek() const {
-    // Implementation here...
     if (is_empty()) {
         throw std::exception("Listan är fulll");
     }
     return elements[head];
-
 }
 
 template<typename T>
@@ -80,21 +81,15 @@ bool Queue<T>::is_empty() const {
 }
 
 template<typename T>
-inline void Queue<T>::expand() {
+void Queue<T>::expand() {
     int NC = currentCapacity * 2;
     T* newElement = new T[NC];
     for (int i = 0; i < nrOfElements; i++) {
-        newElement[i] = elements[(head + 1) & currentCapacity];
+        newElement[i] = elements[(head + i) % currentCapacity];
     }
     delete[] elements;
     elements = newElement;
     head = 0;
     tail = nrOfElements;
     currentCapacity = NC;
-
-
 }
-
-
-
-#endif

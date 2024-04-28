@@ -1,14 +1,238 @@
 #pragma once
 #include <iostream>
+#include <exception>
 
 using namespace std;
 
-void printArray(int array[], int size) {
-	int i;
-	for (i = 0; i < size; i++)
-		cout << array[i] << " ";
-	cout << endl;
-}
+
+
+
+
+//
+//template <typename T>
+//class Queue {
+//	T* elements;
+//	int capacity, head, tail, nrOfElements;
+//	void expand();
+//public:
+//	Queue(int initCapacity = 10);
+//	virtual ~Queue();
+//	Queue(Queue& other) = delete;
+//	Queue operator=(Queue& other) = delete;
+//	void enqueue(const T& element);
+//	T dequeue();
+//	const T& peek() const;
+//	bool is_empty() const;
+//};
+//
+//template<typename T>
+//Queue<T>::Queue(int initCapacity): elements(new T[initCapacity]), capacity(initCapacity), head(0), tail(0), nrOfElements(0) {}
+//
+//template<typename T>
+//Queue<T>::~Queue() {
+//	delete[] elements;
+//}
+//
+//template<typename T>
+//void Queue<T>::enqueue(const T& element) {
+//	if (nrOfElements == capacity) {
+//		expand();
+//	}
+//	elements[tail] = element;
+//	tail = (tail + 1) % capacity;
+//	nrOfElements++;
+//}
+//
+//template<typename T>
+//T Queue<T>::dequeue() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: dequeue() on an empty queue.");
+//	}
+//	T data = elements[head];
+//	head = (head + 1) % capacity;
+//	nrOfElements--;
+//	return data;
+//}
+//
+//template<typename T>
+//const T& Queue<T>::peek() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: peek() on an empty queue.");
+//	}
+//	return elements[head];
+//}
+//
+//template<typename T>
+//bool Queue<T>::is_empty() const {
+//	return nrOfElements == 0;
+//}
+//
+//template<typename T>
+//void Queue<T>::expand() {
+//	int tempCapacity = capacity * 2;
+//	T* tempElements = new T[tempCapacity];
+//	for (int i = 0; i < capacity; i++) {
+//		tempElements[i] = elements[(head + 1) % capacity];
+//	}
+//	delete[] elements;
+//	elements = tempElements;
+//	capacity = tempCapacity;
+//	head = 0;
+//	tail = nrOfElements;
+//}
+//
+
+
+//
+//
+//template <typename T>
+//class Stack {
+//	T* elements;
+//	int capacity;
+//	int top;
+//	void expand();
+//public:
+//	Stack(int initCapacity = 10);
+//	virtual ~Stack();
+//	Stack(Stack& other) = delete;
+//	Stack operator=(Stack& other) = delete;
+//	void push(const T& element);
+//	const T& peek() const;
+//	T pop();
+//	bool is_empty() const;
+//};
+//
+//template<typename T>
+//inline void Stack<T>::expand() {
+//	int newCapacity = capacity * 2;
+//	T* tempElements = new T[newCapacity];
+//	for (int i = 0; i < capacity; i++) {
+//		tempElements[i] = elements[i];
+//	}
+//	delete[] elements;
+//	elements = tempElements;
+//	capacity = newCapacity;
+//}
+//
+//template<typename T>
+//inline Stack<T>::Stack(int initCapacity) : elements(new T[initCapacity]), capacity(initCapacity), top(0) {}
+//
+//template<typename T>
+//inline Stack<T>::~Stack() {
+//	delete []elements;
+//}
+//
+//
+//template<typename T>
+//inline void Stack<T>::push(const T & element) {
+//	if (top == capacity) {
+//		expand();
+//	}
+//	elements[top++] = element;
+//}
+//template<typename T>
+//inline const T& Stack<T>::peek() const{
+//	if (is_empty()) {
+//		throw std::exception("Exception: peek() called on an empty array.");
+//	}
+//	return elements[top - 1];
+//}
+//
+//template<typename T>
+//inline T Stack<T>::pop() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: peek() called on an empty array.");
+//	}
+//	return elements[--top];
+//}
+//
+//template<typename T>
+//inline bool Stack<T>::is_empty() const {
+//	return top == 0;
+//}
+//
+
+
+//template<typename T>
+//class Queue {
+//	class Node {
+//	public:
+//		T data;
+//		Node* next;
+//		Node(T data, Node* next = nullptr) : data(data), next(next) {}
+//	};
+//	Node* first;
+//	Node* last;
+//public:
+//	Queue();
+//	virtual ~Queue();
+//	Queue(const Queue& other) = delete;
+//	Queue& operator=(const Queue& other) = delete;
+//	void enqueue(const T& element);
+//	T dequeue();
+//	const T& peek();
+//	bool is_empty();
+//
+//};
+//
+//template<typename T>
+//inline Queue<T>::Queue() : first(nullptr), last(nullptr) {}
+//
+//template<typename T>
+//inline Queue<T>::~Queue() {
+//	while (first != nullptr) {
+//		Node* temp = first;
+//		first = first->next;
+//		delete temp;
+//	}
+//}
+//
+//template<typename T>
+//inline void Queue<T>::enqueue(const T& element) {
+//	Node* temp = new Node(element);
+//	if (is_empty()) {
+//		first = last = temp;
+//	} else {
+//		last->next = temp;
+//		last = temp;
+//	}
+//}
+//
+//template<typename T>
+//inline T Queue<T>::dequeue() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: dequeue on an empty queue.");
+//	}
+//	Node* temp = first;
+//	T data = first->data;
+//	first = first->next;
+//
+//	if (first == nullptr) {
+//		last = nullptr;
+//	}
+//	delete temp;
+//	return data;
+//}
+//template<typename T>
+//inline const T& Queue<T>::peek() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: peek on an empty array.");
+//	}
+//	return first->data;
+//}
+//
+//template<typename T>
+//inline bool Queue<T>::is_empty() {
+//	return first == nullptr;
+//}
+
+
+//void printArray(int array[], int size) {
+//	int i;
+//	for (i = 0; i < size; i++)
+//		cout << array[i] << " ";
+//	cout << endl;
+//}
 //
 //template<typename T>
 //void swapIt(T& from, T& to) {

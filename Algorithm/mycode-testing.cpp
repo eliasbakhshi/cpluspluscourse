@@ -20,7 +20,7 @@
 //	try {
 //	indexedList.addAt(0, 55);
 //	indexedList.addAt(0, 56);
-//	indexedList.removeFirst();
+//	indexedList.removeLast();
 //	indexedList.addAt(0, 57);
 //	indexedList.addAt(0, 58);
 //	indexedList.addAt(2, 88);

@@ -127,22 +127,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Priorityqueue.cpp" />
     <ClCompile Include="Testing1.cpp" />
     <ClCompile Include="Test-LabB1.cpp" />
     <ClCompile Include="Testing2.cpp" />
     <ClCompile Include="Temp.h" />
     <ClCompile Include="mycode-testing.cpp" />
     <ClCompile Include="Testing3.cpp" />
+    <ClCompile Include="TestsB2Heap.cpp" />
     <ClCompile Include="TestsB2HeapList.cpp" />
     <ClCompile Include="TestsB2IndexedList.cpp" />
+    <ClCompile Include="TestsB2OrderedList.cpp" />
+    <ClCompile Include="TestsB2PriorityQueueHeap.cpp" />
+    <ClCompile Include="TestsB2PriorityQueueOrderedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Heap.hpp" />
     <ClInclude Include="HeapList.hpp" />
     <ClInclude Include="IndexedList.hpp" />
     <ClInclude Include="Lab1.h" />
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Lab3.h" />
+    <ClInclude Include="OrderedList.hpp" />
+    <ClInclude Include="Priorityqueue.h" />
+    <ClInclude Include="PriorityQueueHeap.hpp" />
+    <ClInclude Include="PriorityQueueOrderedList.hpp" />
     <ClInclude Include="QueueCircularArray.h" />
     <ClInclude Include="QueueLinkedList.h" />
     <ClInclude Include="SortedList.h" />

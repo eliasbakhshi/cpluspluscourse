@@ -79,7 +79,7 @@ template <class T>
 void IndexedList<T>::addAt(int index, const T& element) {
 	// Adds element at an index
 	if (index < 0 || index > num_elements) {
-		throw std::exception("Exception: addAt out of range.");
+		throw std::out_of_range("Exception: addAt out of range.");
 	}
 	Node* temp = new Node(element);
 	if (index == 0) {
@@ -121,21 +121,21 @@ T IndexedList<T>::removeAt(int index) {
 		throw std::out_of_range("Exception: removeAt index out of range.");
 	}
 	Node* walker = front;
+	T data;
 	if (index == 0) {
 		front = front->next;
-		T data = walker->data;
+		data = walker->data;
 		delete walker;
-		--num_elements;
-		return data;
+	} else {
+		for (int i = 0; i < index - 1; ++i) {
+			walker = walker->next;
+		}
+		Node* temp = walker->next;
+		walker->next = temp->next;
+		data = temp->data;
+		delete temp;
 	}
-	for (int i = 0; i < index - 1; ++i) {
-		walker = walker->next;
-	}
-	Node* temp = walker->next;
-	walker->next = temp->next;
-	T data = temp->data;
-	delete temp;
-	--num_elements;
+	num_elements--;
 	return data;
 }
 
@@ -156,7 +156,7 @@ T IndexedList<T>::removeLast() {
 	T data = temp->data;
 	delete temp;
 	walker->next = nullptr;
-	--num_elements;
+	num_elements--;
 	return data;
 }
 

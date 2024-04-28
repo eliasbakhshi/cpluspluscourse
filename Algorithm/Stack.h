@@ -44,16 +44,9 @@ inline void Stack<T>::expand() {
 	currentCapacity = newCapacity;
 }
 
-
 // kopienring construckturn
 template<typename T>
-inline Stack<T>::Stack(int initialCapacity) :currentCapacity(initialCapacity), top(0), elements(new T[initialCapacity])
-
-{
-
-
-}
-
+inline Stack<T>::Stack(int initialCapacity) :currentCapacity(initialCapacity), top(0), elements(new T[initialCapacity]) {}
 
 // dekonstructorn
 template<typename T>

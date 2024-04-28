@@ -7,15 +7,6 @@
 
 using namespace std;
 
-/*
-throw exception if dequeue() or peek() is executed when the queue is empty
-
-for example in dequeue():
-
-throw std::exception("calling dequeue() on Empty queue")
-
-if the queue is empty
-*/
 
 template <typename T>
 class Queue {
