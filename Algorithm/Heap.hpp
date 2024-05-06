@@ -80,6 +80,7 @@ T Heap<T>::extractMax() {
         throw std::logic_error("Heap is empty");
     }
     T maxElement = elements[0];
+
     elements[0] = elements[--nrOfElements];
     int index = 0;
     while (true) {

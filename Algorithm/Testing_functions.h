@@ -1,11 +1,678 @@
 #pragma once
 #include <iostream>
 #include <exception>
+#include "BST.hpp"
 
 using namespace std;
 
 
+int main() {
+	BST<int> bst;
 
+	bst.insert(55);
+
+	cout << bst.toGraphviz() << endl;
+
+	return 0;
+}
+
+//
+//#ifndef HEAP_HPP
+//#define HEAP_HPP
+//
+//#include <stdexcept>
+//
+//template <class T>
+//class Heap {
+//private:
+//	int capacity;
+//	int nrOfElements;
+//	T* elements;
+//	void expand();
+//public:
+//	Heap(int initialCapacity = 10);
+//	~Heap();
+//	Heap(const Heap& other) = delete;
+//	Heap& operator=(const Heap& other) = delete;
+//
+//	int size() const;
+//	bool is_empty() const;
+//	void insert(const T& element);
+//	T extractMax();
+//	T getMax() const;
+//};
+//
+//#endif
+//
+//
+//template <class T>
+//Heap<T>::Heap(int initialCapacity) : capacity(initialCapacity), nrOfElements(0), elements(new T[initialCapacity]) {}
+//
+//template <class T>
+//Heap<T>::~Heap() {
+//	delete[] elements;
+//}
+//
+//template <class T>
+//void Heap<T>::expand() {
+//	int tempCapacity = capacity * 2;
+//	T* tempElements = new T[tempCapacity];
+//	for (int i = 0; i < capacity; i++) {
+//		tempElements[i] = elements[i];
+//	}
+//	delete[] elements;
+//	elements = tempElements;
+//	capacity = tempCapacity;
+//}
+//
+//template <class T>
+//int Heap<T>::size() const {
+//	return nrOfElements;
+//}
+//
+//template <class T>
+//bool Heap<T>::is_empty() const {
+//	return nrOfElements == 0;
+//}
+//
+//template <class T>
+//void Heap<T>::insert(const T& element) {
+//	if (nrOfElements == capacity) {
+//		expand();
+//	}
+//	elements[nrOfElements++] = element;
+//	int index = nrOfElements - 1;
+//	while (index < 0 && elements[index] < elements[(index - 1) / 2]) {
+//		std::swap(elements[index], elements[(index - 1) / 2]);
+//		index = (index - 1) / 2;
+//	}
+//}
+//
+//template <class T>
+//T Heap<T>::extractMax() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: list is empty.");
+//	}
+//
+//	T maxElement = elements[0];
+//
+//	elements[0] = elements[--nrOfElements];
+//	int index = 0;
+//	while (true) {
+//		int leftchild = index * 2 + 1;
+//		int rightchild = index * 2 + 2;
+//		int largest = index;
+//		if (leftchild < nrOfElements && elements[leftchild] > elements[largest]) {
+//			largest = leftchild;
+//		}
+//		if (rightchild < nrOfElements && elements[rightchild] > elements[largest]) {
+//			largest = rightchild;
+//		}
+//		if (index != largest) {
+//			elements[index] = elements[largest];
+//			index = largest;
+//		} else {
+//			break;
+//		}
+//	}
+//	return maxElement;
+//}
+//
+//template <class T>
+//T Heap<T>::getMax() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: list is empty.");
+//	}
+//	return elements[0];
+//}
+
+
+
+//
+//#ifndef ORDEREDLIST_HPP
+//#define ORDEREDLIST_HPP
+//
+//#include <stdexcept>
+//
+//template <class T>
+//class OrderedList {
+//private:
+//	struct Node {
+//		T data;
+//		Node* next;
+//
+//		Node(const T& value) : data(value), next(nullptr) {}
+//	};
+//
+//	Node* front;
+//	int num_elements;
+//
+//public:
+//	OrderedList();
+//	~OrderedList();
+//	OrderedList(const OrderedList& other) = delete;
+//	OrderedList& operator=(const OrderedList& other) = delete;
+//
+//	int size() const;
+//	bool is_empty() const;
+//	void add(const T& element);
+//	T remove(const T& element);
+//	T removeAt(int index);
+//	T removeFirst();
+//	T removeLast();
+//	T get(const T& element) const;
+//	T first() const;
+//	T last() const;
+//};
+//
+//#endif
+//
+//
+//template <class T>
+//OrderedList<T>::OrderedList() : front(nullptr), num_elements(0) {}
+//
+//template <class T>
+//OrderedList<T>::~OrderedList() {
+//	while (front != nullptr) {
+//		Node* toDelete = front;
+//		front = front->next;
+//		delete toDelete;
+//	}
+//}
+//
+//template <class T>
+//int OrderedList<T>::size() const {
+//	return num_elements;
+//}
+//
+//template <class T>
+//bool OrderedList<T>::is_empty() const {
+//	return num_elements == 0;
+//}
+//
+//template <class T>
+//void OrderedList<T>::add(const T& element) {
+//	Node* temp = new Node(element);
+//	if (is_empty() || front->data > element) {
+//		temp->next = front;
+//		front = temp;
+//	} else {
+//		Node* walker = front;
+//		while (walker->next != nullptr && walker->next->data < element) {
+//			walker = walker->next;
+//		}
+//		temp->next = walker->next;
+//		walker->next = temp;
+//	}
+//	num_elements++;
+//}
+//
+//template <class T>
+//T OrderedList<T>::remove(const T& element) {
+//	if (is_empty()) {
+//		throw std::exception("Exception: remove() called on an empty list.");
+//	}
+//	if (element == front->data) {
+//		return removeFirst();
+//	}
+//	Node* walker = front;
+//	while (walker->next != nullptr && walker->next->data != element) {
+//		walker = walker->next;
+//	}
+//	if (walker->next == nullptr) {
+//		throw std::exception("Exception: element not found.");
+//	}
+//	Node* toDelete = walker->next;
+//	T data = toDelete->data;
+//	walker->next = toDelete->next;
+//	delete toDelete;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeAt(int index) {
+//	if (index < 0 || index >= num_elements) {
+//		throw std::exception("Exception: Called removeAt() and it is out of range");
+//	}
+//	if (index == 0) {
+//		return removeFirst();
+//	}
+//	Node* walker = front;
+//	for (int i = 0; i < index - 1; i++) {
+//		walker = walker->next;
+//	}
+//	T data = walker->data;
+//	Node* toDelete = walker->next;
+//	walker->next = toDelete->next;
+//	delete toDelete;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeFirst() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: removeFirst() called on an empty list.");
+//	}
+//	Node* toDelete = front;
+//	front = front->next;
+//	T data = toDelete->data;
+//	delete toDelete;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeLast() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: removeFirst() called on an empty list.");
+//	}
+//	if (num_elements == 1) {
+//		return removeFirst();
+//	}
+//	Node* walker = front;
+//	while (walker->next->next != nullptr) {
+//		walker = walker->next;
+//	}
+//
+//	T data = walker->next->data;
+//	delete walker->next;
+//	walker->next = nullptr;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::get(const T& element) const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: get() called on an empty list.");
+//	}
+//	Node* walker = front;
+//	while (walker != nullptr) {
+//		if (walker->data == element) {
+//			return walker->data;
+//		}
+//		walker = walker->next;
+//	}
+//	throw std::exception("Exception: element not found.");
+//}
+//
+//template <class T>
+//T OrderedList<T>::first() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: first() called on an empty list.");
+//	}
+//	return front->data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::last() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: first() called on an empty list.");
+//	}
+//	Node* walker = front;
+//	while (walker->next != nullptr) {
+//		walker = walker->next;
+//	}
+//	return walker->data;
+//}
+
+
+//
+//#ifndef INDEXEDLIST_HPP
+//#define INDEXEDLIST_HPP
+//
+//#include <stdexcept>
+//
+//template <class T>
+//class IndexedList {
+//private:
+//	class Node {
+//	public:
+//		T data;
+//		Node* next;
+//
+//		Node(T data = nullptr) : data(data), next(nullptr) {}
+//	};
+//	Node* front;
+//	int num_elements;
+//public:
+//	IndexedList();
+//	~IndexedList();
+//	IndexedList(const IndexedList& other) = delete;
+//	IndexedList& operator=(const IndexedList& other) = delete;
+//
+//	int size() const;
+//	bool is_empty() const;
+//	T getAt(int index) const;
+//	void addAt(int index, const T& element);
+//	T removeFirst();
+//	T removeAt(int index);
+//	T removeLast();
+//	T first() const;
+//	T last() const;
+//};
+//
+//#endif
+//
+//template<class T>
+//IndexedList<T>::IndexedList() : first(nullptr), num_elements(0) {
+//
+//}
+//
+//template <class T>
+//IndexedList<T>::~IndexedList() {
+//	while (front != nullptr) {
+//		Node* temp = front;
+//		front = front->next;
+//		delete temp;
+//	}
+//}
+//
+//template <class T>
+//int IndexedList<T>::size() const {
+//	return num_elements;
+//}
+//
+//template <class T>
+//bool IndexedList<T>::is_empty() const {
+//	return num_elements == 0;
+//}
+//
+//template <class T>
+//T IndexedList<T>::getAt(int index) const {
+//	if (index < 0 || index >= num_elements) {
+//		throw std::exception("Exception: getAt() on an empty array.");
+//	}
+//	if (index == 0) {
+//		return front->data;
+//	} else {
+//		Node* temp = front;
+//		for (int i = 0; i < index - 1; i++) {
+//			temp = temp->next;
+//		}
+//		return temp->data;
+//	}
+//}
+//
+//template <class T>
+//void IndexedList<T>::addAt(int index, const T& element) {
+//	if (index < 0 || index > num_elements) {
+//		throw std::out_of_range("Exception: addAt() called out of range.");
+//	}
+//	Node* temp = front;
+//	if (index == 0) {
+//		temp->next = front;
+//		front = temp;
+//	} else {
+//		Node* walker = front;
+//		for (int i = 0; i < index -1; i++) {
+//			walker = walker->next;
+//		}
+//		temp->next = walker->next;
+//		walker->next = temp;
+//	}
+//	num_elements++:
+//}
+//
+//template <class T>
+//T IndexedList<T>::removeFirst() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: getAt() on an empty array.");
+//	}
+//	Node* toDelete = front;
+//	front = front->next;
+//	T data = toDelete->data;
+//	delete toDelete;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T IndexedList<T>::removeAt(int index) {
+//	if (index < 0 || index >= num_elements) {
+//		throw std::out_of_range("Exception: removeAt() called out of range.");
+//	}
+//	T data;
+//	if (index == 0) {
+//		Node* toDelete = front;
+//		front = front->next;
+//		data = toDelete->data;
+//		delete toDelete;
+//	} else {
+//		Node* walker = front;
+//		for (int i = 0; i < index - 1; i++) {
+//			walker = walker->next;
+//		}
+//		Node* toDelete = walker->next;
+//		walker->next = toDelete->next;
+//		data = toDelete->data;
+//		delete toDelete;
+//	}
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T IndexedList<T>::removeLast() {
+//	if (is_empty()) {
+//		throw std::exception("Exception: getAt() on an empty array.");
+//	}
+//	if (num_elements == 1) {
+//		return removeFirst();
+//	}
+//	Node* walker = front;
+//	while (walker->next->next != nullptr) {
+//		walker = walker->next;
+//	}
+//	Node* toDelete = walker->next;
+//	walker->next = toDelete->next;
+//	T data = toDelete->data;
+//	delete toDelete;
+//	num_elements--;
+//	return data;
+//}
+//
+//template <class T>
+//T IndexedList<T>::first() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: Called first() on an empty list.");
+//	}
+//	return front->data;
+//}
+//
+//template <class T>
+//T IndexedList<T>::last() const {
+//	if (is_empty()) {
+//		throw std::exception("Exception: last() called on an empty array.");
+//	}
+//	Node* walker = front;
+//	while (walker->next != nullptr) {
+//		walker = walker->next;
+//	}
+//	return walker->data;
+//}
+
+
+//
+//template <typename T>
+//class OrderedList {
+//	class Node {
+//	public:
+//		T data;
+//		Node* next;
+//		Node(const T& data) : data(data), next(nullptr) {};
+//	};
+//	Node* front;
+//	int num_elements;
+//
+//public:
+//    OrderedList();
+//    ~OrderedList();
+//    OrderedList(const OrderedList& other) = delete;
+//    OrderedList& operator=(const OrderedList& other) = delete;
+//
+//    int size() const;
+//    bool is_empty() const;
+//    void add(const T& element);
+//    T remove(const T& element);
+//    T removeAt(int index);
+//    T removeFirst();
+//    T removeLast();
+//    T get(const T& element) const;
+//    T first() const;
+//    T last() const;
+//};
+//
+//
+//template <class T>
+//OrderedList<T>::OrderedList(): front(nullptr), num_elements(0) {}
+//
+//template <class T>
+//OrderedList<T>::~OrderedList() {
+//    while (front != nullptr) {
+//        Node* temp = front;
+//        front = front->next;
+//        delete temp;
+//    }
+//}
+//
+//template <class T>
+//int OrderedList<T>::size() const {
+//    return num_elements;
+//}
+//
+//template <class T>
+//bool OrderedList<T>::is_empty() const {
+//    return num_elements == 0;
+//}
+//
+//template <class T>
+//void OrderedList<T>::add(const T& element) {
+//    Node* temp = new Node(element);
+//    if (is_empty() || element < front->data) {
+//        temp->next = front;
+//        front = temp;
+//    } else {
+//        Node* walker = front;
+//        while (walker->next != nullptr && walker->next->data < element) {
+//            walker = walker->next;
+//        }
+//        temp->next = walker->next;
+//        walker->next = temp;
+//    }
+//    num_elements++;
+//}
+//
+//template <class T>
+//T OrderedList<T>::remove(const T& element) {
+//    if (is_empty()) {
+//        throw std::exception("Exception: Called remove() on an empty list.");
+//    }
+//    if (element == front->data) {
+//        return removeFirst();
+//    }
+//    Node* temp = front;
+//    while (temp->next != nullptr && temp->next->data != element) {
+//        temp = temp->next;
+//    }
+//    if (temp->next == nullptr) {
+//        throw std::out_of_range("Exception: Could not find the element.");
+//    }
+//    Node* toDelete = temp->next;
+//    T data = temp->data;
+//    temp->next = toDelete->next;
+//    delete toDelete;
+//    num_elements--;
+//    return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeAt(int index) {
+//    if (index < 0 || index >= num_elements) {
+//        throw std::out_of_range("Exception: Out of range.");
+//    }
+//    if (index == 0) {
+//        return removeFirst();
+//    }
+//
+//    Node* temp = first;
+//    for (int i = 0; i < index - 1; i++) {
+//        temp = temp->next;
+//    }
+//    Node* toDelete = temp->next;
+//    temp->next = toDelete->next;
+//    T data = toDelete->data;
+//    delete toDelete;
+//    num_elements--;
+//    return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeFirst() {
+//    if (is_empty()) {
+//        throw std::exception("Exception: removeFirst() called on an empty list.");
+//    }
+//    Node* temp = front;
+//    front = front->next;
+//    T data = temp->data;
+//    delete temp;
+//    num_elements--;
+//    return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::removeLast() {
+//    if (is_empty()) {
+//        throw std::exception("Exception: removeLast() called on an empty list.");
+//    }
+//    if (num_elements == 1) {
+//        return removeFirst();
+//    }
+//    Node* temp = front;
+//    while (temp->next->next != nullptr) {
+//        temp = temp->next;
+//    }
+//    Node* toDelete = temp->next;
+//    temp->next = nullptr;
+//    T data = toDelete->data;
+//    delete toDelete;
+//    num_elements--;
+//    return data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::get(const T& element) const {
+//    Node* temp = front;
+//    while (temp != nullptr) {
+//        if (temp->data == element) {
+//            return temp->data;
+//        }
+//        temp = temp->next;
+//    }
+//    throw std::exception("Exception: Element not found.");
+//}
+//
+//template <class T>
+//T OrderedList<T>::first() const {
+//    if (is_empty()) {
+//        throw std::exception("Exception: first() called on an empty list.");
+//    }
+//    return front->data;
+//}
+//
+//template <class T>
+//T OrderedList<T>::last() const {
+//    if (is_empty()) {
+//        throw std::exception("Exception: first() called on an empty list.");
+//    }
+//    Node* temp = front;
+//    while (temp->next != nullptr) {
+//        temp = temp->next;
+//    }
+//    return temp->data;    
+//}
 
 
 //

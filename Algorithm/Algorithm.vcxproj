@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BSTtests.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Testing1.cpp" />
     <ClCompile Include="Test-LabB1.cpp" />
     <ClCompile Include="Testing2.cpp" />
@@ -141,6 +143,7 @@
     <ClCompile Include="TestsB2PriorityQueueOrderedList.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BST.hpp" />
     <ClInclude Include="Heap.hpp" />
     <ClInclude Include="HeapList.hpp" />
     <ClInclude Include="IndexedList.hpp" />
