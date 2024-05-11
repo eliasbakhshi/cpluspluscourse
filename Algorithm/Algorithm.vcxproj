@@ -141,9 +141,17 @@
     <ClCompile Include="TestsB2OrderedList.cpp" />
     <ClCompile Include="TestsB2PriorityQueueHeap.cpp" />
     <ClCompile Include="TestsB2PriorityQueueOrderedList.cpp" />
+    <ClCompile Include="TestsBFS.cpp" />
+    <ClCompile Include="TestsDFS.cpp" />
+    <ClCompile Include="TestsDisjointSets.cpp" />
+    <ClCompile Include="TestsGraph.cpp" />
+    <ClCompile Include="TestsKruskals.cpp" />
+    <ClCompile Include="TestsPrims.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.hpp" />
+    <ClInclude Include="DisjointSets.hpp" />
+    <ClInclude Include="Graph.hpp" />
     <ClInclude Include="Heap.hpp" />
     <ClInclude Include="HeapList.hpp" />
     <ClInclude Include="IndexedList.hpp" />
@@ -159,6 +167,12 @@
     <ClInclude Include="SortedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Testing_functions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="graph_basic.txt" />
+    <Text Include="graph_easy.txt" />
+    <Text Include="graph_hard.txt" />
+    <Text Include="graph_medium.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

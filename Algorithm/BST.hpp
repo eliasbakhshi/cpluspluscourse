@@ -11,8 +11,7 @@ private:
 		T data;
 		Node* left;
 		Node* right;
-		Node* parent; // Is not required to be used if using a recursive approach.
-		// If you are using an iterative approach, it is beneficial to use a parent pointer.
+		Node* parent;
 
 		Node(int val) : data(val), left(nullptr), right(nullptr), parent(nullptr) {}
 	};
@@ -32,18 +31,13 @@ public:
 
 	void remove(T element);
 
-	void postOrderTraversalHelper(Node* current, std::string& result);
-	void preOrderTraversalHelper(Node* current, std::string& result);
-	void inOrderTraversalHelper(Node* current, std::string& result);
 
 	std::string inorderTraversalRec(Node* current);
 	std::string postorderTraversalRec(Node* current);
 	std::string preorderTraversalRec(Node* current);
 
 	std::string inOrderTraversal();
-
 	std::string preOrderTraversal();
-
 	std::string postOrderTraversal();
 
 	std::string toGraphviz();
@@ -60,7 +54,6 @@ inline typename BST<T>::Node* BST<T>::insertRec(Node* currentRoot, T element) {
 		currentRoot->left = insertRec(currentRoot->left, element);
 	else 
 		currentRoot->right = insertRec(currentRoot->right, element);
-
 
 	return currentRoot;
 }
@@ -80,7 +73,7 @@ void BST<T>::insert(T element) {
 
 	root = insertRec(root, element);
 
-
+	// iteration
 	/*if (root == 0) {
 		root = new Node(element);
 	} else {
@@ -256,32 +249,9 @@ std::string BST<T>::inOrderTraversal() {
 }
 
 template <class T>
-void BST<T>::inOrderTraversalHelper(Node* current, std::string& result) {
-	if (current == nullptr) {
-		return;
-	}
-
-	inOrderTraversalHelper(current->left, result);
-	result += std::to_string(current->data) + ",";
-	inOrderTraversalHelper(current->right, result);
-}
-
-template <class T>
 std::string BST<T>::preOrderTraversal() {
 	return preorderTraversalRec(root);
 }
-
-template <class T>
-void BST<T>::preOrderTraversalHelper(Node* current, std::string& result) {
-	if (current == nullptr) {
-		return;
-	}
-
-	result += std::to_string(current->data) + ",";
-	preOrderTraversalHelper(current->left, result);
-	preOrderTraversalHelper(current->right, result);
-}
-
 
 template <class T>
 std::string BST<T>::postOrderTraversal() {
