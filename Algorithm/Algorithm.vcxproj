@@ -150,20 +150,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.hpp" />
-    <ClInclude Include="DisjointSets.hpp" />
+    <ClInclude Include="DisjointSetsTeacher.hpp" />
+    <ClInclude Include="Graph-thomas.hpp" />
     <ClInclude Include="Graph.hpp" />
+    <ClInclude Include="Graph2.hpp" />
     <ClInclude Include="Heap.hpp" />
     <ClInclude Include="HeapList.hpp" />
     <ClInclude Include="IndexedList.hpp" />
     <ClInclude Include="Lab1.h" />
     <ClInclude Include="Lab2.h" />
     <ClInclude Include="Lab3.h" />
+    <ClInclude Include="MinPriorityQueueTeacher.hpp" />
     <ClInclude Include="OrderedList.hpp" />
     <ClInclude Include="Priorityqueue.h" />
     <ClInclude Include="PriorityQueueHeap.hpp" />
     <ClInclude Include="PriorityQueueOrderedList.hpp" />
     <ClInclude Include="QueueCircularArray.h" />
     <ClInclude Include="QueueLinkedList.h" />
+    <ClInclude Include="Quicksort.hpp" />
     <ClInclude Include="SortedList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Testing_functions.h" />

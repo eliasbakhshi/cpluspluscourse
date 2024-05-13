@@ -1,20 +1,171 @@
-#pragma once
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
 #include <iostream>
 #include <exception>
-#include "BST.hpp"
+#include "DisjointSetsTeacher.hpp"
+#include <utility>
+#include <vector>
+#include <climits>
+#include <tuple>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <queue>
+#include <stack>
 
 using namespace std;
 
+const int INFINIT_COST = INT_MAX;
 
-int main() {
-	BST<int> bst;
+template <class T>
+class Graph {
+	class Edge {
+	public:
+		T fromVertex;
+		T toVertex;
+		int weight;
+		Edge() {}
+		Edge(T fromVertex, T toVertex, int weight) : fromVertex(fromVertex), toVertex(toVertex), weight(weight) {}
+		bool operator<(const Edge& other) const { return weight < other.weight; }
+		bool operator>(const Edge& other) const { return weight > other.weight; }
+		bool operator<=(const Edge& other) const { return weight <= other.weight; }
+		bool operator>=(const Edge& other) const { return weight >= other.weight; }
+		bool operator==(const Edge& other) const { return fromVertex == other.fromVertex && toVertex != other.toVertex; }
+		bool operator!=(const Edge& other) const { return fromVertex != other.fromVertex || toVertex != other.toVertex; }
+	};
 
-	bst.insert(55);
+	unordered_map<T, int> vertMap;
+	vector<vector<Edge>> edgeLists;
 
-	cout << bst.toGraphviz() << endl;
+public:
+	Graph();
+	virtual ~Graph() = default;
+	Graph(const Graph& other) = delete;
+	Graph& operator=(const Graph& other) = delete;
+	void addVertex(T theNode);
+	void addEdge(T from, T to, int weight = 0);
+	vector<T> getAllNeighboursTo(T vertex);
+	int getNrOfVertices() const;
+	int getNrOfEdges() const;
+	//void kruskals(vector<tuple<T, T, int>>& mst, int& totalCost);
+	void prims(vector<tuple<T, T, int>>& mst, int& totalCost);
+	////void readFromFile(string file);
+	//string depthFirstSearchHelper(T vertex, unordered_set<T>& visited);
+	//string depthFirstSearch(T from);
+	//string breadthFirstSearch(T from);
+};
 
-	return 0;
+
+template<class T>
+inline Graph<T>::Graph() {}
+
+template<class T>
+inline void Graph<T>::addVertex(T theNode) {
+	if (vertMap.count(theNode) > 0) {
+		throw exception("Exception: vertex already exists.");
+	}
+	vertMap[theNode] = (int)vertMap.size();
+	edgeLists.push_back(vector<Edge>());
 }
+
+template<class T>
+inline void Graph<T>::addEdge(T from, T to, int weight) {
+	if (vertMap.count(from) == 0) {
+		addVertex(from);
+	}
+	if (vertMap.count(to) == 0) {
+		addVertex(to);
+	}
+	edgeLists[vertMap[from]].push_back(Edge(from, to, weight));
+	edgeLists[vertMap[to]].push_back(Edge(to, from, weight));
+}
+
+template<class T>
+inline vector<T> Graph<T>::getAllNeighboursTo(T vertex) {
+	if (vertMap.count(vertex) == 0) {
+		throw exception("Error: No vertex of that kind inputted");
+	}
+	vector<T> neighbours;
+	for (int i = 0; i < edgeLists[vertMap[vertex]].size(); i++) {
+		neighbours.push_back(edgeLists[vertMap[vertex]][i].toVertex);
+	}
+	sort(neighbours.begin(), neighbours.end());
+	return neighbours;
+}
+
+
+
+template<class T>
+inline int Graph<T>::getNrOfVertices() const {
+	return (int)vertMap.size();
+}
+
+template<class T>
+inline int Graph<T>::getNrOfEdges() const {
+	int size = 0;
+	for (int i = 0; i < edgeLists.size(); i++) {
+		size += (int)edgeLists[i].size();
+	}
+	return size;
+}
+
+template<class T>
+inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
+	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	unordered_set <T> visited;
+	T startedNode = vertMap.begin()->first;
+
+	visited.insert(startedNode);
+
+	for (int i = 0; i < edgeLists[vertMap[startedNode]].size(); i++) {
+		pq.push(edgeLists[vertMap[startedNode]][i]);
+	}
+	totalCost = 0;
+
+	while (!pq.empty()) {
+		Edge currentEdge = pq.top();
+		pq.pop();
+
+		if (visited.count(currentEdge.toVertex) > 0) {
+			continue;
+		}
+
+		mst.push_back({ currentEdge.fromVertex, currentEdge.toVertex, currentEdge.weight });
+		totalCost += currentEdge.weight;
+
+		for (int i = 0; i < edgeLists[vertMap[currentEdge.toVertex]].size(); i++) {
+			if (visited.count(edgeLists[vertMap[currentEdge.toVertex]][i].toVertex) == 0) {
+				pq.push(edgeLists[vertMap[currentEdge]]);
+			}
+		}
+		for (const auto & edge : edgeLists[vertMap[currentEdge.toVertex]]) {
+			if (visited.count(edge.toVertex) == 0) {
+				pq.push(edge)
+			}
+		}
+	}
+}
+
+
+
+
+
+#endif
+
+
+//int main() {
+//	BST<int> bst;
+//
+//	bst.insert(55);
+//
+//	cout << bst.toGraphviz() << endl;
+//
+//	return 0;
+//}
+
+
+
 
 //
 //#ifndef HEAP_HPP

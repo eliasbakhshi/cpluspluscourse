@@ -116,30 +116,37 @@ inline int Graph<T>::getNrOfEdges() const {
 
 template<class T>
 inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
-	DisjointSets<T> disjointSets;
-	for (const auto& vert : vertMap) {
-		disjointSets.makeSet(vert.first);
-
+	DisjointSets<T>disjointSet;
+	// skapa ett set per båge
+	for (const auto& vertexEntry : vertMap) {
+		disjointSet.makeSet(vertexEntry.first);
 	}
-	vector<Edge> alla;
-	for (const auto& edgeList : edgeLists) {
-		for (const auto& edge : edgeList) {
-			alla.push_back(edge);
+
+	//sortera
+	vector<Edge> edges;
+	for (const auto& adjList : edgeLists) {
+		for (const auto& edge : adjList) {
+			edges.push_back(edge);
 		}
 	}
-	totalCost = 0;
-	sort(alla.begin(), alla.end());
+	sort(edges.begin(), edges.end());
 
-	for (auto const& edge : alla) {
+	totalCost = 0;
+
+	// lägg till
+	for (const auto& edge : edges) {
 		T from = edge.fromVertex;
 		T to = edge.toVertex;
 		int weight = edge.weight;
-		if (disjointSets.findSet(from) != disjointSets.findSet(to)) {
+
+		//kolla om cykel
+		if (disjointSet.findSet(from) != disjointSet.findSet(to)) {
 			mst.push_back({ from, to, weight });
 			totalCost += weight;
-			disjointSets.unionSet(from, to);
+			disjointSet.unionSet(from, to);
 		}
 	}
+
 	/*DisjointSets<T> disjSets;
 	vector<Edge> allEdges;
 
@@ -150,7 +157,7 @@ inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
 		cout << currentVector[0].fromVertex << endl;
 		for (int j = 0; j < currentVector.size(); j++)
 		{
-			allEdges.push_back(currentVector[j]);di
+			allEdges.push_back(currentVector[j]);
 		}
 	}
 	sort(allEdges.begin(), allEdges.end());
@@ -194,7 +201,7 @@ inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
 		pq.pop();
 		// ger mig visited.end() om currentNode.toVertex inte finns i vår visited array
 		// om vi inte har visitat noden som var på toppen, gå till den;
-		
+
 		//if (visited.find(currentEdge.toVertex) != visited.end()) {
 		if (visited.count(currentEdge.toVertex) > 0) {
 			continue;
@@ -208,6 +215,7 @@ inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
 		//lägga ner vår nya nods grannar om dom inte är redan visitade
 		for (const auto& edge : edgeLists[vertMap[currentEdge.toVertex]]) {
 			//if check om grannen är i visited
+			auto test1 = visited.count(edge.toVertex);
 			//if (visited.find(edge.toVertex) == visited.end()) {
 			if (visited.count(edge.toVertex) == 0) {
 				pq.push(edge);
