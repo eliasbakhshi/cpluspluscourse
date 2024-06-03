@@ -51,7 +51,7 @@ public:
 	void kruskals(vector<tuple<T, T, int>>& mst, int& totalCost);
 	void prims(vector<tuple<T, T, int>>& mst, int& totalCost);
 	//void readFromFile(string file);
-	string depthFirstSearchHelper(T vertex, unordered_set<T>& visited);
+	//string depthFirstSearchHelper(T vertex, unordered_set<T>& visited);
 	string depthFirstSearch(T from);
 	string breadthFirstSearch(T from);
 };
@@ -119,8 +119,8 @@ inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
 	DisjointSets<T> disjointSets;
 	for (const auto& vert : vertMap) {
 		disjointSets.makeSet(vert.first);
-
 	}
+
 	vector<Edge> alla;
 	for (const auto& edgeList : edgeLists) {
 		for (const auto& edge : edgeList) {
@@ -130,7 +130,7 @@ inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
 	totalCost = 0;
 	sort(alla.begin(), alla.end());
 
-	for (auto const& edge : alla) {
+	for (const auto& edge : alla) {
 		T from = edge.fromVertex;
 		T to = edge.toVertex;
 		int weight = edge.weight;
@@ -150,12 +150,12 @@ inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
 		cout << currentVector[0].fromVertex << endl;
 		for (int j = 0; j < currentVector.size(); j++)
 		{
-			allEdges.push_back(currentVector[j]);di
+			allEdges.push_back(currentVector[j]);
 		}
 	}
 	sort(allEdges.begin(), allEdges.end());
 
-	int nrOfVertices = edgeLists.size();
+	int nrOfVertices = (int)edgeLists.size();
 	int currentNrOfEdgesInMST = 0;
 	int index = 0;
 	while (currentNrOfEdgesInMST < nrOfVertices-1)
@@ -174,27 +174,28 @@ inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
 template<class T>
 inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
 	//prio kö
-	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	//priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
+	MinPriorityQueue<Edge> pq;
 	//visited set
 	unordered_set<T> visited;
 	T startNode = vertMap.begin()->first;
 	visited.insert(startNode);
 
-	//lägger till nodens grannar i vår prioQue
+	////lägger till nodens grannar i vår prioQue
 	for (const auto& edge : edgeLists[vertMap[startNode]]) {
-		pq.push(edge);
+		pq.enqueue(edge);
 	}
 	totalCost = 0;
 
 	//håll på tills vår kö är tom
-	while (!pq.empty()) {
+	while (!pq.is_empty()) {
 		// ta första edgen i vår kö
-		Edge currentEdge = pq.top();
+		Edge currentEdge = pq.peek();
 		// släng den
-		pq.pop();
+		pq.dequeue();
 		// ger mig visited.end() om currentNode.toVertex inte finns i vår visited array
 		// om vi inte har visitat noden som var på toppen, gå till den;
-		
+
 		//if (visited.find(currentEdge.toVertex) != visited.end()) {
 		if (visited.count(currentEdge.toVertex) > 0) {
 			continue;
@@ -210,40 +211,14 @@ inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
 			//if check om grannen är i visited
 			//if (visited.find(edge.toVertex) == visited.end()) {
 			if (visited.count(edge.toVertex) == 0) {
-				pq.push(edge);
+				pq.enqueue(edge);
 			}
 		}
 	}
 }
 
-template<class T>
-string Graph<T>::depthFirstSearchHelper(T vertex, unordered_set<T>& visited) {
-	string result = "";
-	visited.insert(vertex);
-	result += vertex;
 
-	vector<T> sortedNeighbors;
-	for (const auto& edge : edgeLists[vertMap[vertex]]) {
-		if (visited.find(edge.toVertex) == visited.end()) {
-			sortedNeighbors.push_back(edge.toVertex);
-		}
-	}
-	sort(sortedNeighbors.begin(), sortedNeighbors.end());
 
-	for (const auto& neighbor : sortedNeighbors) {
-		// if neighbor not visited continue
-		if (visited.find(neighbor) == visited.end()) {
-			result += "," + depthFirstSearchHelper(neighbor, visited);
-		}
-	}
-	return result;
-}
-
-template<class T>
-string Graph<T>::depthFirstSearch(T from) {
-	unordered_set<T> visited;
-	return depthFirstSearchHelper(from, visited);
-}
 
 template <class T>
 string Graph<T>::breadthFirstSearch(T from) {
@@ -263,7 +238,8 @@ string Graph<T>::breadthFirstSearch(T from) {
 
 		vector<T> sortedNeighbors;
 		for (const auto& edge : edgeLists[vertMap[vertex]]) {
-			if (visited.find(edge.toVertex) == visited.end()) {
+			//if (visited.find(edge.toVertex) == visited.end()) {
+			if (visited.count(edge.toVertex) == 0) {
 				sortedNeighbors.push_back(edge.toVertex);
 				visited.insert(edge.toVertex);
 			}
@@ -277,6 +253,39 @@ string Graph<T>::breadthFirstSearch(T from) {
 }
 
 
+template <class T>
+std::string Graph<T>::depthFirstSearch(T from) {
+	string visited = "";
+	stack<T> stack;
+	vector<bool> visitedVector(edgeLists.size(), false);
+
+	stack.push(from);
+
+	while (!stack.empty()) {
+		T current = stack.top();
+		stack.pop();
+
+		if (!visitedVector[vertMap[current]]) {
+			visitedVector[vertMap[current]] = true;
+			if (!visited.empty()) {
+				visited += ",";
+			}
+			visited += current;
+
+			vector<T> neighbors = getAllNeighboursTo(current);
+
+			reverse(neighbors.begin(), neighbors.end());
+
+			for (int i = 0; i < neighbors.size(); i++) {
+				if (!visitedVector[vertMap[neighbors[i]]]) {
+					stack.push(neighbors[i]);
+				}
+			}
+		}
+	}
+
+	return visited;
+}
 
 
 //#include <sstream> // For string conversion

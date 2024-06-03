@@ -117,7 +117,7 @@ void insertionSortWithBinarySearch(T arr[], int nrOf) {
 
 // quicksort implementerad 
 template <typename T>
-void Quicksort(T arr[], int start, int end) {
+void quickSort(T arr[], int start, int end) {
 	if (start < end) {
 		int pivotIndex = partition(arr, start, end);
 		Quicksort(arr, start, pivotIndex - 1);
@@ -129,7 +129,7 @@ template <typename T>
 int partition(T arr[], int start, int end) {
 	T pivot = arr[end];
 	int temp = start - 1;
-	for (int i = start; i < end; i++) {
+	for (int i = start; i < end - 1; i++) {
 		if (arr[i] <= pivot) {
 			temp++;
 			std::swap(arr[i], arr[temp]);

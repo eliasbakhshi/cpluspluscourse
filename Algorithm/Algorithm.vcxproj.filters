@@ -75,6 +75,15 @@
     <ClCompile Include="TestsBFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Testing-lab1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing-lab1B.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing-lab1C.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab1.h">

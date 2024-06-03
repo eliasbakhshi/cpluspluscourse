@@ -16,138 +16,378 @@
 
 using namespace std;
 
-const int INFINIT_COST = INT_MAX;
-
-template <class T>
-class Graph {
-	class Edge {
-	public:
-		T fromVertex;
-		T toVertex;
-		int weight;
-		Edge() {}
-		Edge(T fromVertex, T toVertex, int weight) : fromVertex(fromVertex), toVertex(toVertex), weight(weight) {}
-		bool operator<(const Edge& other) const { return weight < other.weight; }
-		bool operator>(const Edge& other) const { return weight > other.weight; }
-		bool operator<=(const Edge& other) const { return weight <= other.weight; }
-		bool operator>=(const Edge& other) const { return weight >= other.weight; }
-		bool operator==(const Edge& other) const { return fromVertex == other.fromVertex && toVertex != other.toVertex; }
-		bool operator!=(const Edge& other) const { return fromVertex != other.fromVertex || toVertex != other.toVertex; }
-	};
-
-	unordered_map<T, int> vertMap;
-	vector<vector<Edge>> edgeLists;
-
-public:
-	Graph();
-	virtual ~Graph() = default;
-	Graph(const Graph& other) = delete;
-	Graph& operator=(const Graph& other) = delete;
-	void addVertex(T theNode);
-	void addEdge(T from, T to, int weight = 0);
-	vector<T> getAllNeighboursTo(T vertex);
-	int getNrOfVertices() const;
-	int getNrOfEdges() const;
-	//void kruskals(vector<tuple<T, T, int>>& mst, int& totalCost);
-	void prims(vector<tuple<T, T, int>>& mst, int& totalCost);
-	////void readFromFile(string file);
-	//string depthFirstSearchHelper(T vertex, unordered_set<T>& visited);
-	//string depthFirstSearch(T from);
-	//string breadthFirstSearch(T from);
-};
-
-
-template<class T>
-inline Graph<T>::Graph() {}
-
-template<class T>
-inline void Graph<T>::addVertex(T theNode) {
-	if (vertMap.count(theNode) > 0) {
-		throw exception("Exception: vertex already exists.");
-	}
-	vertMap[theNode] = (int)vertMap.size();
-	edgeLists.push_back(vector<Edge>());
+template<typename T>
+void swapIt(T& from, T& to) {
+	T temp = to;
+	to = from;
+	from = temp;
 }
 
-template<class T>
-inline void Graph<T>::addEdge(T from, T to, int weight) {
-	if (vertMap.count(from) == 0) {
-		addVertex(from);
-	}
-	if (vertMap.count(to) == 0) {
-		addVertex(to);
-	}
-	edgeLists[vertMap[from]].push_back(Edge(from, to, weight));
-	edgeLists[vertMap[to]].push_back(Edge(to, from, weight));
-}
-
-template<class T>
-inline vector<T> Graph<T>::getAllNeighboursTo(T vertex) {
-	if (vertMap.count(vertex) == 0) {
-		throw exception("Error: No vertex of that kind inputted");
-	}
-	vector<T> neighbours;
-	for (int i = 0; i < edgeLists[vertMap[vertex]].size(); i++) {
-		neighbours.push_back(edgeLists[vertMap[vertex]][i].toVertex);
-	}
-	sort(neighbours.begin(), neighbours.end());
-	return neighbours;
-}
-
-
-
-template<class T>
-inline int Graph<T>::getNrOfVertices() const {
-	return (int)vertMap.size();
-}
-
-template<class T>
-inline int Graph<T>::getNrOfEdges() const {
-	int size = 0;
-	for (int i = 0; i < edgeLists.size(); i++) {
-		size += (int)edgeLists[i].size();
-	}
-	return size;
-}
-
-template<class T>
-inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
-	priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
-	unordered_set <T> visited;
-	T startedNode = vertMap.begin()->first;
-
-	visited.insert(startedNode);
-
-	for (int i = 0; i < edgeLists[vertMap[startedNode]].size(); i++) {
-		pq.push(edgeLists[vertMap[startedNode]][i]);
-	}
-	totalCost = 0;
-
-	while (!pq.empty()) {
-		Edge currentEdge = pq.top();
-		pq.pop();
-
-		if (visited.count(currentEdge.toVertex) > 0) {
-			continue;
+template <typename T>
+void insertionSort(T arr[], int nrOf) {
+	for (int i = 0; i < nrOf; i++) {
+		int index = i;
+		T value = arr[i];
+		while (index > 0 && arr[index - 1] > value) {
+			arr[index] = arr[index - 1];
+			index--;
 		}
+		arr[index] = value;
+	}
+}
 
-		mst.push_back({ currentEdge.fromVertex, currentEdge.toVertex, currentEdge.weight });
-		totalCost += currentEdge.weight;
 
-		for (int i = 0; i < edgeLists[vertMap[currentEdge.toVertex]].size(); i++) {
-			if (visited.count(edgeLists[vertMap[currentEdge.toVertex]][i].toVertex) == 0) {
-				pq.push(edgeLists[vertMap[currentEdge]]);
+template <typename T>
+void selectionSort(T arr[], int nrOf) {
+	for (int i = 0; i < nrOf - 1; i++) {
+		int lowest = i;
+		for (int j = i + 1; j < nrOf; j++) {
+			if (arr[lowest] > arr[j]) {
+				lowest = j;
 			}
 		}
-		for (const auto & edge : edgeLists[vertMap[currentEdge.toVertex]]) {
-			if (visited.count(edge.toVertex) == 0) {
-				pq.push(edge)
-			}
+		if (lowest != i) {
+			swapIt(arr[lowest], arr[i]);
 		}
 	}
 }
 
 
+template <typename T>
+int linearSearch(T arr[], int nrOf, T toFind) {
+	for (int i = 0; i < nrOf; i++) {
+		if (arr[i] == toFind) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+template <typename T>
+int binarySearch(T arr[], int nrOf, T toFind) {
+	int left = 0;
+	int right = nrOf - 1;
+	while (left <= right) {
+		int mid = left + (right - left) / 2;
+		if (arr[mid] == toFind) {
+			return mid;
+		}
+		if (arr[mid] < toFind) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	return -1;
+}
+
+template <typename T>
+void quickSortHelper(T arr[], int start, int end) {
+	if (start < end) {
+		T pivot = arr[end];
+		int lower = start - 1;
+
+		for (int i = start; i < end; i++) {
+			if (arr[i] < pivot) {
+				lower++;
+				swapIt(arr[i], arr[lower]);
+			}
+		}
+		swapIt(arr[lower + 1], pivot);
+		int pivotIndex =  lower + 1;
+
+		quickSortHelper(arr, start, pivotIndex - 1);
+		quickSortHelper(arr, pivotIndex + 1, end);
+	}
+}
+
+
+template <typename T>
+void quickSortHelper(T arr[], int start, int end) {
+	if (start < end) {
+		T pivot = arr[end];
+		int lower = start - 1;
+
+		for (int i = start; i < end; i++) {
+			if (arr[i] <= pivot) {
+				lower++;
+				swapIt(arr[i], arr[lower]);
+			}
+		}
+		swapIt(arr[lower + 1], arr[end]);
+		int pivotIndex = lower + 1;
+
+		quickSortHelper(arr, start, pivotIndex - 1);
+		quickSortHelper(arr, pivotIndex + 1, end);
+	}
+}
+
+template <typename T>
+void quickSort(T arr[], int nrOf) {
+	quickSortHelper(arr, 0, nrOf - 1);
+}
+
+template <typename T>
+void heapify(T arr[], int n, int i) {
+	int largest = i;
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
+
+	if (l < n && arr[l] > arr[largest]) {
+		largest = l;
+	}
+	if (r < n && arr[r] > arr[largest]) {
+		largest = r;
+	}
+	if (largest != i) {
+		swapIt(arr[i], arr[largest]);
+		heapify(arr, n, largest);
+	}
+}
+
+template <typename T>
+void heapSort(T arr[], int n) {
+	for (int i = n / 2 - 1; i >= 0; i--) {
+		heapify(arr, n, i);
+	}
+	for (int i = n - 1; i > 0; i--) {
+		swapIt(arr[0], arr[i]);
+		heapify(arr, i, 0);
+	}
+}
+
+
+template<typename T>
+void merge(T arr[], int startIndex, int midIndex, int endIndex) {
+	int leftNrOf = midIndex - startIndex + 1;
+	int rightNrOf = endIndex - midIndex;
+	T* left = new T[leftNrOf];
+	T* right = new T[rightNrOf];
+
+	for (int i = 0; i < leftNrOf; ++i)
+		left[i] = arr[startIndex + i];
+	for (int i = 0; i < rightNrOf; ++i)
+		right[i] = arr[midIndex + 1 + i];
+
+	int i = startIndex, j = 0, k = 0;
+	while (j < leftNrOf && k < rightNrOf) {
+		if (left[j] <= right[k]) {
+			arr[i] = left[j];
+			++j;
+		} else {
+			arr[i] = right[k];
+			++k;
+		}
+		++i;
+	}
+	while (j < leftNrOf) {
+		arr[i] = left[j];
+		++j;
+		++i;
+	}
+	while (k < rightNrOf) {
+		arr[i] = right[k];
+		++k;
+		++i;
+	}
+}
+
+template <typename T>
+void mergeSortHelper(T arr[], int l, int r) {
+	if (l < r) {
+		int m = (r + l) / 2;
+		mergeSortHelper(arr, l, m);
+		mergeSortHelper(arr, m + 1, r);
+		merge(arr, l, m, r);
+	}
+}
+
+template <typename T>
+void mergeSort(T arr[], int nrOf) {
+	mergeSortHelper(arr, 0, nrOf - 1);
+}
+
+
+template <typename T>
+void Countingsort(T elements[], int nrOfElements) {
+	T maxValue = elements[0];
+	for (int i = 0; i < nrOfElements; i++) {
+		if (maxValue < elements[i]) {
+			maxValue = elements[i];
+		}
+	}
+
+	int* count = new int[maxValue + 1] {0};
+
+	for (int i = 0; i < nrOfElements; i++) {
+		count[elements[i]]++;
+	}
+
+	int index = 0;
+	for (int i = 0; i <= maxValue; i++) {
+		while (count[i] > 0) {
+			elements[index++] = i;
+			count[i]--;
+		}
+	}
+
+	delete[] count;
+}
+
+
+
+
+//
+//const int INFINIT_COST = INT_MAX;
+//
+//template <class T>
+//class Graph {
+//	class Edge {
+//	public:
+//		T fromVertex;
+//		T toVertex;
+//		int weight;
+//		Edge() {}
+//		Edge(T fromVertex, T toVertex, int weight) : fromVertex(fromVertex), toVertex(toVertex), weight(weight) {}
+//		bool operator<(const Edge& other) const { return weight < other.weight; }
+//		bool operator>(const Edge& other) const { return weight > other.weight; }
+//		bool operator<=(const Edge& other) const { return weight <= other.weight; }
+//		bool operator>=(const Edge& other) const { return weight >= other.weight; }
+//		bool operator==(const Edge& other) const { return fromVertex == other.fromVertex && toVertex != other.toVertex; }
+//		bool operator!=(const Edge& other) const { return fromVertex != other.fromVertex || toVertex != other.toVertex; }
+//	};
+//
+//	unordered_map<T, int> vertMap;
+//	vector<vector<Edge>> edgeLists;
+//
+//public:
+//	Graph();
+//	virtual ~Graph() = default;
+//	Graph(const Graph& other) = delete;
+//	Graph& operator=(const Graph& other) = delete;
+//	void addVertex(T theNode);
+//	void addEdge(T from, T to, int weight = 0);
+//	vector<T> getAllNeighboursTo(T vertex);
+//	int getNrOfVertices() const;
+//	int getNrOfEdges() const;
+//	void kruskals(vector<tuple<T, T, int>>& mst, int& totalCost);
+//	void prims(vector<tuple<T, T, int>>& mst, int& totalCost);
+//	////void readFromFile(string file);
+//	//string depthFirstSearchHelper(T vertex, unordered_set<T>& visited);
+//	//string depthFirstSearch(T from);
+//	//string breadthFirstSearch(T from);
+//};
+//
+//
+//template<class T>
+//inline Graph<T>::Graph() {}
+//
+//template<class T>
+//inline void Graph<T>::addVertex(T theNode) {
+//	if (vertMap.count(theNode) > 0) {
+//		throw exception("Exception: vertex already exists.");
+//	}
+//	vertMap[theNode] = (int)vertMap.size();
+//	edgeLists.push_back(vector<Edge>());
+//}
+//
+//template<class T>
+//inline void Graph<T>::addEdge(T from, T to, int weight) {
+//	if (vertMap.count(from) == 0) {
+//		addVertex(from);
+//	}
+//	if (vertMap.count(to) == 0) {
+//		addVertex(to);
+//	}
+//	edgeLists[vertMap[from]].push_back(Edge(from, to, weight));
+//	edgeLists[vertMap[to]].push_back(Edge(to, from, weight));
+//}
+//
+//template<class T>
+//inline vector<T> Graph<T>::getAllNeighboursTo(T vertex) {
+//	if (vertMap.count(vertex) == 0) {
+//		throw exception("Error: No vertex of that kind inputted");
+//	}
+//	vector<T> neighbours;
+//	for (int i = 0; i < edgeLists[vertMap[vertex]].size(); i++) {
+//		neighbours.push_back(edgeLists[vertMap[vertex]][i].toVertex);
+//	}
+//	sort(neighbours.begin(), neighbours.end());
+//	return neighbours;
+//}
+//
+//
+//
+//template<class T>
+//inline int Graph<T>::getNrOfVertices() const {
+//	return (int)vertMap.size();
+//}
+//
+//template<class T>
+//inline int Graph<T>::getNrOfEdges() const {
+//	int size = 0;
+//	for (int i = 0; i < edgeLists.size(); i++) {
+//		size += (int)edgeLists[i].size();
+//	}
+//	return size;
+//}
+//
+//template<class T>
+//inline void Graph<T>::prims(vector<tuple<T, T, int>>& mst, int& totalCost) {
+//	priority_queue < Edge, vector<Edge>, greater<Edge>> pq;
+//	unordered_set<T> visited;
+//
+//	T startPoint = vertMap.begin()->first;
+//	visited.insert(startPoint);
+//	totalCost = 0;
+//
+//	for (const auto& edge : edgeLists[vertMap[startPoint]]) {
+//		pq.push(edge);
+//	}
+//
+//	while (!pq.empty()) {
+//		Edge currentEdge = pq.top();
+//		pq.pop();
+//		if (visited.count(currentEdge.toVertex) > 0) {
+//			continue;
+//		}
+//
+//		mst.push_back({ currentEdge.fromVertex, currentEdge.toVertex, currentEdge.weight });
+//		totalCost += currentEdge.weight;
+//		visited.insert(currentEdge.toVertex);
+//
+//		for (const auto & edge : edgeLists[vertMap[currentEdge.toVertex]]) {
+//			if (visited.count(edge.toVertex) == 0) {
+//				pq.push(edge);
+//			}
+//		}
+//	}
+//}
+//
+//template<class T>
+//inline void Graph<T>::kruskals(vector<tuple<T, T, int>>& mst, int& totalCost) {
+//	DisjointSets<T> disSet;
+//	for (const auto & vert : vertMap) {
+//		disSet.makeSet(vert.first);
+//	}
+//
+//	vector<Edge> alla;
+//	for (const auto& edges : edgeLists) {
+//		for (const auto & edge : edges) {
+//			alla.push_back(edge);
+//		}
+//	}
+//	sort(alla.begin(), alla.end());
+//	totalCost = 0;
+//	
+//	for (const auto & edge: alla) {
+//		if (disSet.findSet(edge.fromVertex) != disSet.findSet(edge.toVertex)) {
+//			mst.push_back({ edge.fromVertex, edge.toVertex, edge.weight });
+//			totalCost += edge.weight;
+//			disSet.unionSet(edge.fromVertex, edge.toVertex);
+//		}
+//	}
+//}
 
 
 

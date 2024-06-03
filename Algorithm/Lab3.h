@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -27,9 +28,16 @@ Tip2: It is ok to use the template vector for the buckets (lists)
 template <typename T>
 void Countingsort(T elements[], int nrOfElements) {
 	// Find the maximum value in the array
-	T maxvalue = *max_element(elements, elements + nrOfElements);
+	//T maxvalue = *max_element(elements, elements + nrOfElements);
 
-	// Allocate count (temprary) array dynamically 
+    T maxvalue = 0;
+    for (int i = 0; i < nrOfElements; i++) {
+        if (maxvalue < elements[i]) {
+            maxvalue = elements[i];
+        }
+    }
+
+	// Allocate count (temprary) array dynamically
 	int* count = new int[maxvalue + 1] {0};
 
 	// Count the occurrences of each element in the array

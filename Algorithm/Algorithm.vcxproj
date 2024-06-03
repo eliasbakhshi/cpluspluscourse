@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="BSTtests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Testing-lab1.cpp" />
+    <ClCompile Include="Testing-lab1B.cpp" />
+    <ClCompile Include="Testing-lab1C.cpp" />
     <ClCompile Include="Testing1.cpp" />
     <ClCompile Include="Test-LabB1.cpp" />
     <ClCompile Include="Testing2.cpp" />

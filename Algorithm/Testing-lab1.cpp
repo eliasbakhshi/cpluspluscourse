@@ -1,18 +1,11 @@
+//#include "Testing_functions.h"
 //#include <string>
 //#include <iostream>
 //#include <utility>
-////#include "Lab1.h"
-//#include "Testing_functions.h"
 //
 //using namespace std;
+//// lägg till test av att alla ursprungselement finns kvar efter sorteringen
 //
-//// print the list
-//template <typename T>
-//void printArray(T arr[], int length) {
-//	for (int i = 0; i < length; i++) {
-//		cout << arr[i] << " ";
-//	}
-//}
 //
 //
 //class ComparableElem
@@ -20,7 +13,7 @@
 //public:
 //	int value;
 //	int control;
-//	ComparableElem(int value, int control) : value(value), control(control) {}
+//	ComparableElem(int value = 0, int control = 0) : value(value), control(control) {}
 //	bool operator<(const ComparableElem& other) const
 //	{
 //		return value < other.value;
@@ -44,7 +37,6 @@
 //	srand(seed);
 //}
 //
-//
 //void generateIntegers(int nrs[], int nrOf, int maxValue = 1000)
 //{
 //	for (int i = 0; i < nrOf; i++)
@@ -59,6 +51,35 @@
 //	for (int i = 0; i < nrOf - 1; i++)
 //		if (arr[i + 1] < arr[i])
 //			return false;
+//	return true;
+//}
+//
+//template<typename T>
+//bool hasSameElement(T arrOne[], T arrTwo[], int nrOf)
+//{
+//	int count = 0;
+//	for (int i = 0; i < nrOf; i++)
+//	{
+//		for (int k = 0; k < nrOf; k++)
+//		{
+//			if (arrTwo[i] == arrOne[k])
+//				count++;
+//		}
+//	}
+//	return count == nrOf;
+//}
+//
+//bool testSameElementsInArrayBeforeAndAfterSorting(void (*sortfunc)(int*, int), string nameOfSortAlgorithm)
+//{
+//	std::cout << "Test " << nameOfSortAlgorithm << " on same elements in array before and after sorting has 1 testcase " << std::endl;
+//	const int CAP = 9;
+//	int beforeArr[CAP]{ 55, 11, 33, 88, 99, 22, 44, 66, 77 };
+//	int afterArr[CAP]{ 55, 11, 33, 88, 99, 22, 44, 66, 77 };
+//	sortfunc(afterArr, CAP);
+//	if (!hasSameElement(beforeArr, afterArr, CAP))
+//		return false;
+//	std::cout << "Test 1: OK " << std::endl;
+//	std::cout << "################## OK ##################### " << std::endl;
 //	return true;
 //}
 //
@@ -190,6 +211,7 @@
 //	std::cout << "################## OK ##################### " << std::endl;
 //	return true;
 //}
+//
 //bool testLinearSearch()
 //{
 //	std::cout << "Test linear search has 5 testcases" << std::endl;
@@ -303,6 +325,16 @@
 //
 //int main()
 //{
+//	if (!testSameElementsInArrayBeforeAndAfterSorting(insertionSort<int>, "insertionsort"))
+//	{
+//		cout << "NOT OK" << endl;
+//		return -1;
+//	}
+//	if (!testSameElementsInArrayBeforeAndAfterSorting(selectionSort<int>, "selectionsort"))
+//	{
+//		cout << "NOT OK" << endl;
+//		return -1;
+//	}
 //	if (!testSortOnSmallIntegerArrays(insertionSort<int>, "insertionsort"))
 //	{
 //		std::cout << "Test insertionsort on small arrays : NOT OK" << std::endl;
@@ -333,7 +365,6 @@
 //		std::cout << "Test selectionsort on arrays with objects: NOT OK" << std::endl;
 //		return 6;
 //	}
-//	
 //	if (!testLinearSearch())
 //	{
 //		std::cout << "Test linear search : NOT OK" << std::endl;
@@ -351,3 +382,4 @@
 //
 //	return 0;
 //}
+//

@@ -3,21 +3,29 @@
 //#include <exception>
 //#include "BST.hpp"
 //#include "Graph.hpp"
-//#include "DisjointSets.hpp"
+////#include "DisjointSets.hpp"
 //#include <string>
+//#include "Lab3.h"
 //
-//using namespace std; 
+//using namespace std;
 //
 //int main() {
 //
-//	DisjointSets<string> disSets;
+//
+//	int arr[] = { 2,5,6,3,5,12,7,1, 11, 10 };
+//	Countingsort(arr, 10);
+//	for (int i = 0; i < 8; i++) {
+//		cout << arr[i] << " ";
+//	}
+//
+//	/*DisjointSets<string> disSets;
 //
 //	disSets.makeSet("a");
 //	disSets.makeSet("b");
 //	disSets.makeSet("c");
 //
 //	disSets.unionSet("a", "b");
-//	disSets.unionSet("b", "c");
+//	disSets.unionSet("b", "c");*/
 //
 //	/*Graph<string> graph;
 //
@@ -45,4 +53,4 @@
 //	cout << bst.toGraphviz() << endl;*/
 //
 //	return 0;
-//}	
+//}

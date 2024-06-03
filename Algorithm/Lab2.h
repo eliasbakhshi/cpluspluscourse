@@ -8,16 +8,16 @@ template <typename T>
 void quickSortHelper(T arr[], int low, int high) {
     if (low < high) {
         T pivot = arr[high];
-        int i = low - 1;
+        int temp = low - 1;
 
-        for (int j = low; j <= high - 1; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                std::swap(arr[i], arr[j]);
+        for (int i = low; i <= high - 1; i++) {
+            if (arr[i] <= pivot) {
+                temp++;
+                std::swap(arr[temp], arr[i]);
             }
         }
-        std::swap(arr[i + 1], arr[high]);
-        int pi = i + 1;
+        std::swap(arr[temp + 1], arr[high]);
+        int pi = temp + 1;
 
         quickSortHelper(arr, low, pi - 1);
         quickSortHelper(arr, pi + 1, high);
